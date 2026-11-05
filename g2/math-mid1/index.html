@@ -774,6 +774,288 @@ const Q=[
   ex:'<p>看線段圖：媽媽做的 18 個＋美美做的（　）個＝45 個。</p><p>有括號的算式：<b>18＋（　）＝45</b>，也可以寫 45－18＝（　）。</p>'+bar45(true)+vert(45,'－',18,27)+'<p>答：美美做了 27 個可頌。</p>'}
 ];
 Q.forEach((q,i)=>q.id='q'+i);
+/* ---------- step-by-step explanations for every math question ---------- */
+const ST=(...a)=>'<p>按「下一步」，一步一步看：</p>'+calcStepper(a.flatMap(x=>Array.isArray(x)&&typeof x[0]!=='string'?x:[x]).map(x=>Array.isArray(x)?{html:x[0],t:x[1]}:x));
+const EX=(s,n,html)=>{const q=Q.find(q=>q.s===s&&q.n===n);if(!q)throw new Error('no q '+s+n);q.ex=html};
+const txt=(x,y,t,o='')=>`<text x="${x}" y="${y}" ${o||'text-anchor="middle" font-size="14" fill="var(--ink)"'} style="font-family:var(--f-body)">${t}</text>`;
+const big=t=>`<p class="bigeq">${t}</p>`;
+
+/* 一1 strips */
+function strips(r,b,ghost){
+  const X=20,W=432;let g=`<rect x="${X}" y="8" width="${W}" height="28" fill="var(--grid)" stroke="var(--ink)" stroke-width="1.5"/>${txt(X+W/2,27,'衣櫃')}`;
+  for(let i=0;i<r;i++)g+=`<rect x="${X+i*W/8}" y="48" width="${W/8}" height="22" fill="var(--red-soft)" stroke="var(--red)" stroke-width="1.5"/>${txt(X+i*W/8+W/16,64,i+1,'text-anchor="middle" font-size="12" fill="var(--red)"')}`;
+  for(let i=0;i<b;i++){const gh=ghost&&i===b-1;g+=`<rect x="${X+i*W/9}" y="82" width="${W/9}" height="22" fill="${gh?'none':'var(--pen-soft)'}" stroke="var(--pen)" stroke-width="1.5" ${gh?'stroke-dasharray="4 3"':''}/>${txt(X+i*W/9+W/18,98,i+1,'text-anchor="middle" font-size="12" fill="var(--pen)"')}`}
+  g+=`<line x1="${X}" y1="2" x2="${X}" y2="112" stroke="var(--muted)" stroke-dasharray="5 4"/><line x1="${X+W}" y1="2" x2="${X+W}" y2="112" stroke="var(--muted)" stroke-dasharray="5 4"/>`;
+  if(r)g+=txt(X+W+8,64,'紅','font-size="13" fill="var(--red)"');if(b)g+=txt(X+W+8,98,'藍','font-size="13" fill="var(--pen)"');
+  return svg(480,116,g,'用紅紙條和藍紙條量衣櫃');
+}
+EX('s1','1',ST(
+  [strips(0,0),'衣櫃的長度是固定的，我們用兩種紙條來量它。'],
+  [strips(8,0),'<b class="cr">紅紙條</b>排了 8 張，剛好量完。'],
+  [strips(8,8),'<b>藍紙條</b>排了 8 張，還沒量完，右邊還空一段。'],
+  [strips(8,9,true),'再補 1 張才剛好，所以藍紙條要用 <b>9 張</b>。'],
+  [strips(8,9),'一樣長的衣櫃，藍紙條用得比較多張，表示<b>每一張藍紙條比較短</b>。答案是 <b>②</b>。']));
+
+/* 一2 */
+const vr=(a,op,b,r)=>vert(a,op,b,r);
+EX('s1','2',ST(
+  [`<div class="verts">${vr(76,'－',70,6)}</div>`,'先算題目：個位 6－0＝6，十位 7－7＝0，答案是 <b>6</b>。'],
+  [`<div class="verts">${vr(68,'－',62,6)}</div>`,'① 68－62：個位 8－2＝6，十位 6－6＝0，答案是 <b>6</b>，一樣！'],
+  [`<div class="verts">${vr(77,'－',76,1)}</div>`,'② 77－76＝1，不一樣。'],
+  [`<div class="verts">${vr(86,'－',72,14)}</div>`,'③ 86－72＝14，不一樣。'],
+  [`<div class="verts">${vr(76,'－',70,6)}${vr(68,'－',62,6)}</div>`,'76－70 和 68－62 的答案都是 6，所以選 <b>①</b>。']));
+
+/* 一3 */
+function lolliN(c,b){
+  const X0=20;let g='';
+  for(let i=0;i<5;i++){const x=X0+i*96;g+=`<rect x="${x+3}" y="10" width="90" height="16" rx="8" fill="${i<c?'var(--red-soft)':'none'}" stroke="var(--ink)" stroke-width="2"/>${i<c?txt(x+48,23,i+1,'text-anchor="middle" font-size="13" font-weight="700" fill="var(--red)"'):''}`}
+  g+=`<circle cx="${X0+48}" cy="66" r="40" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/><rect x="${X0+88}" y="62" width="392" height="8" rx="4" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
+  for(let i=0;i<8;i++)g+=`<circle cx="${X0+30+i*60}" cy="140" r="29" fill="${i<b?'var(--pen-soft)':'var(--grid)'}" stroke="var(--ink)" stroke-width="2"/>${i<b?txt(X0+30+i*60,146,i+1,'text-anchor="middle" font-size="16" font-weight="700" fill="var(--pen)"'):''}`;
+  g+=`<line x1="${X0}" y1="2" x2="${X0}" y2="174" stroke="var(--muted)" stroke-dasharray="5 4"/><line x1="${X0+480}" y1="2" x2="${X0+480}" y2="174" stroke="var(--muted)" stroke-dasharray="5 4"/>`;
+  return svg(520,178,g,'數迴紋針和圓球');
+}
+EX('s1','3',ST(
+  [lolliN(0,0),'上面用迴紋針量，下面用圓球量，兩種都從棒棒糖的頭量到尾。'],
+  [lolliN(5,0),'數一數迴紋針：1、2、3、4、5，一共 <b>5 個</b>。'],
+  [lolliN(5,8),'數一數圓球：1、2、3……8，一共 <b>8 個</b>。'],
+  [lolliN(5,8),'8 比 5 多，所以用<b>圓球</b>量，用的個數比較多。答案是 <b>②</b>。']));
+
+/* 一4 */
+EX('s1','4',ST(
+  [big('第一次 37 步，第二次比第一次<span class="cr">多</span> 12 步'),'「比第一次多」，第二次走得比較多，要用<b>加法</b>：37＋12。'],
+  addSteps(37,12,' 步'),
+  [big('37＋12＝49'),'第二次走了 <b>49 步</b>，答案是 <b>②</b>。']));
+
+/* 一5 */
+function rulerHop(k){
+  const p=3,x0=20;let g=rulerH(x0,150,52,p);
+  g+=`<line x1="${x0+40*p}" y1="40" x2="${x0+110*p}" y2="40" stroke="var(--ink)" stroke-width="2"/><circle cx="${x0+40*p}" cy="40" r="4" fill="var(--ink)"/><circle cx="${x0+110*p}" cy="40" r="4" fill="var(--ink)"/>`;
+  for(let c=0;c<k;c++){const a=x0+(40+c*10)*p,b=a+10*p;g+=`<path d="M${a} 36 Q${(a+b)/2} 8 ${b} 36" fill="none" stroke="var(--pen)" stroke-width="2"/>${txt((a+b)/2,14,c+1,'text-anchor="middle" font-size="12" font-weight="700" fill="var(--pen)"')}`}
+  return svg(x0*2+150*p+20,94,g,`從 4 開始跳了 ${k} 格`);
+}
+EX('s1','5',ST(
+  [rulerHop(0),'線從刻度 <b>4</b> 開始，到刻度 <b>11</b> 結束。不是從 0 開始喔！'],
+  [rulerHop(1),'從 4 跳到 5，是 1 公分。'],
+  [rulerHop(3),'繼續跳：5 到 6、6 到 7……'],
+  [rulerHop(7),'跳到 11，一共跳了 <b>7 格</b>，就是 <b>7 公分</b>。'],
+  [big('11－4＝7'),'也可以用「結束的刻度」減「開始的刻度」：11－4＝7。答案是 <b>③</b>。']));
+
+/* 二1 */
+function nl10(k){
+  const X=v=>30+(v-170)*12;let g=`<line x1="20" y1="50" x2="440" y2="50" stroke="var(--ink)" stroke-width="2"/><polygon points="440,45 450,50 440,55" fill="var(--ink)"/>`;
+  for(let v=170;v<=200;v+=10)g+=`<line x1="${X(v)}" y1="42" x2="${X(v)}" y2="58" stroke="var(--ink)" stroke-width="1.6"/><text x="${X(v)}" y="78" text-anchor="middle" font-size="15" fill="${(v===190&&k>0)||(v===200&&k>1)?'var(--red)':'var(--ink)'}" font-weight="${v>180&&k>=(v-180)/10?700:400}">${v}</text>`;
+  for(let i=0;i<k;i++){const a=X(180+i*10),b=X(190+i*10);g+=`<path d="M${a} 44 Q${(a+b)/2} 6 ${b} 44" fill="none" stroke="var(--pen)" stroke-width="2"/>${txt((a+b)/2,16,'＋10','text-anchor="middle" font-size="13" font-weight="700" fill="var(--pen)"')}`}
+  g+=`<circle cx="${X(180+k*10)}" cy="50" r="6" fill="var(--red)"/>`;
+  return svg(460,86,g,'數線上從 180 每次加 10');
+}
+EX('s2','1.',ST(
+  [nl10(0),'1 個十就是 10。從 <b>180</b> 開始。'],
+  [nl10(1),'180＋10＝<b>190</b>：十位的 8 變成 9。'],
+  [nl10(2),'190＋10：十位 9 個十再加 1 個十，變成 10 個十，就是 <b>1 個百</b>，要進位到百位，變成 <b>200</b>。']));
+
+/* 二2 */
+const pw=(h,t,o,hl)=>`<table class="pv"><tr><th>百位</th><th>十位</th><th>個位</th></tr><tr>${[h,t,o].map((v,i)=>`<td style="${hl===i?'background:var(--pen-soft);color:var(--pen);font-weight:700':''}">${v}</td>`).join('')}</tr></table>`;
+EX('s2','2.',ST(
+  [pw('?','?','?'),'有三個提示，一個一個來。'],
+  [pw(1,'?','?',0),'提示一：1 到 9 裡面<b>最小</b>的是 1，所以<b>百位是 1</b>。'],
+  [pw(1,8,'?',1),'提示二：十位比百位多 7，1＋7＝8，所以<b>十位是 8</b>。'],
+  [pw(1,8,9,2),'提示三：個位是百位加十位，1＋8＝9，所以<b>個位是 9</b>。'],
+  [pw(1,8,9),'密碼是 <b>189</b>！']));
+
+/* 二3 */
+function nlRange(k){
+  const X=v=>20+(v-60)*8,vals=[69,108,97,76,88];let g=`<rect x="${X(70)}" y="30" width="${X(100)-X(70)}" height="24" fill="${k>0?'var(--pen-soft)':'none'}"/><line x1="10" y1="42" x2="${X(112)}" y2="42" stroke="var(--ink)" stroke-width="2"/><polygon points="${X(112)},37 ${X(112)+10},42 ${X(112)},47" fill="var(--ink)"/>`;
+  for(let v=60;v<=110;v+=10)g+=`<line x1="${X(v)}" y1="34" x2="${X(v)}" y2="50" stroke="var(--ink)" stroke-width="${v===70||v===100?2.5:1.5}"/><text x="${X(v)}" y="70" text-anchor="middle" font-size="14" font-weight="${v===70||v===100?700:400}" fill="var(--ink)">${v}</text>`;
+  vals.slice(0,Math.max(0,k-1)).forEach((v,i)=>{const ok=v>70&&v<100;g+=`<circle cx="${X(v)}" cy="42" r="6" fill="${ok?'var(--ok)':'var(--red)'}"/><text x="${X(v)}" y="${i%2?22:14}" text-anchor="middle" font-size="14" font-weight="700" fill="${ok?'var(--ok)':'var(--red)'}">${v}${ok?' ✔':' ✗'}</text>`});
+  return svg(X(112)+20,78,g,'數線上 70 到 100 之間');
+}
+EX('s2','3.',ST(
+  [nlRange(0),'「比 70 大，又比 100 小」，就是要在數線上 <b>70 和 100 的中間</b>。'],
+  [nlRange(1),'藍色的地方就是 70 和 100 的中間。'],
+  [nlRange(2),'<b>69</b> 在 70 的左邊，比 70 小，不行 ✗。'],
+  [nlRange(3),'<b>108</b> 在 100 的右邊，比 100 大，不行 ✗。'],
+  [nlRange(6),'<b>97、76、88</b> 都在中間 ✔。答案要三個都寫，全對才給分喔！']));
+
+/* 二4 */
+function cupsR(rank,show){
+  const lv=[0.33,0.58,0.22,0.68],lab=['ㄅ','ㄆ','ㄇ','ㄈ'],R={3:1,1:2,0:3,2:4};let g='';
+  lv.forEach((v,i)=>{const x=20+i*110,top=34,h=100,wy=top+h*(1-v),on=R[i]<=rank;
+    g+=txt(x+45,22,lab[i],'text-anchor="middle" font-size="17" fill="var(--ink)"')+`<rect x="${x}" y="${wy}" width="90" height="${top+h-wy}" fill="${on?'var(--pen-soft)':'var(--grid)'}"/><line x1="${x}" y1="${wy}" x2="${x+90}" y2="${wy}" stroke="${show?'var(--red)':'var(--pen)'}" stroke-width="2" ${show?'stroke-dasharray="5 3"':''}/><rect x="${x}" y="${top}" width="90" height="${h}" fill="none" stroke="var(--ink)" stroke-width="2"/>`;
+    if(on)g+=`<circle cx="${x+45}" cy="${wy-14}" r="12" fill="var(--red)"/>${txt(x+45,wy-9,R[i],'text-anchor="middle" font-size="14" font-weight="700" fill="var(--card)"')}`});
+  if(show)g+=`<line x1="10" y1="${34+100*(1-0.68)}" x2="450" y2="${34+100*(1-0.68)}" stroke="var(--red)" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>`;
+  return svg(460,144,g,'比較四個桶子的水');
+}
+EX('s2','4.(1)',ST(
+  [cupsR(0),'四個桶子一樣大，<b>水倒得越高，表示那個澆花器裝的水越多</b>，容量越大。'],
+  [cupsR(1),'水最高的是 <b>ㄈ</b>，排第 1。'],
+  [cupsR(2),'第 2 高的是 <b>ㄆ</b>。'],
+  [cupsR(3),'第 3 是 <b>ㄅ</b>。'],
+  [cupsR(4),'最低的是 <b>ㄇ</b>。由大到小：<b>ㄈ ＞ ㄆ ＞ ㄅ ＞ ㄇ</b>。']));
+function smallCups(n,ghost){let g='';for(let i=0;i<n;i++){const x=10+i*44,gh=ghost&&i===n-1;g+=`<path d="M${x} 10 L${x+6} 46 H${x+30} L${x+36} 10" fill="${gh?'none':'var(--pen-soft)'}" stroke="var(--ink)" stroke-width="1.5" ${gh?'stroke-dasharray="4 3"':''}/>${txt(x+18,34,i+1,'text-anchor="middle" font-size="13" font-weight="700" fill="var(--pen)"')}`}return `<svg class="fig" viewBox="0 0 ${n*44+16} 54" width="${n*44+16}" style="display:inline-block;vertical-align:middle" role="img" aria-label="${n} 個杯子">${g}</svg>`}
+EX('s2','4.(2)',ST(
+  [`<div class="hrow"><span class="lbl">ㄅ →</span>${smallCups(4)}</div>`,'ㄅ 的水可以倒滿 <b>4 杯</b>。'],
+  [`<div class="hrow"><span class="lbl">ㄅ →</span>${smallCups(4)}</div><div class="hrow"><span class="lbl">ㄇ →</span>？</div>`,'上一題知道：ㄇ 的水比 ㄅ <b>少</b>。'],
+  [`<div class="hrow"><span class="lbl">ㄅ →</span>${smallCups(4)}</div><div class="hrow"><span class="lbl">ㄇ →</span>${smallCups(3)}</div>`,'水比較少，倒出來的杯數就比 4 杯少，所以可能是 <b>3 杯</b>。5 杯比 4 杯多，不可能。']));
+
+/* 二5 */
+function whaleS(d,f){
+  const X0=20,W=480;let g=whaleP(X0,40,W,32,'var(--shade)');
+  for(let i=0;i<d;i++)g+=whaleP(X0+i*240,96,240,14,'var(--grid)')+txt(X0+i*240+100,101,i+1,'text-anchor="middle" font-size="14" font-weight="700" fill="var(--pen)"');
+  for(let i=0;i<f;i++)g+=whaleP(X0+i*60,134,60,8,'var(--pen-soft)')+txt(X0+i*60+30,156,i+1,'text-anchor="middle" font-size="12" font-weight="700" fill="var(--red)"');
+  g+=`<line x1="${X0}" y1="4" x2="${X0}" y2="160" stroke="var(--muted)" stroke-dasharray="5 4"/><line x1="${X0+W}" y1="4" x2="${X0+W}" y2="160" stroke="var(--muted)" stroke-dasharray="5 4"/>`;
+  return svg(520,164,g,'用海豚和小魚量鯨魚');
+}
+EX('s2','5.',ST(
+  [whaleS(0,0),'兩條虛線之間就是鯨魚的長度。'],
+  [whaleS(1,0),'在下面排海豚：第 1 隻……'],
+  [whaleS(2,0),'第 2 隻剛好排到尾巴，鯨魚和 <b>2 隻海豚</b>一樣長。'],
+  [whaleS(2,4),'再排小魚：1、2、3、4……'],
+  [whaleS(2,8),'排到第 8 隻剛好，鯨魚和 <b>8 隻小魚</b>一樣長。']));
+
+/* 二6 */
+function pensC(k,extra){
+  let g='';for(let i=0;i<14;i++){const x=10+(i%10)*46,y=10+Math.floor(i/10)*72,on=i<k;
+    g+=`<rect x="${x}" y="${y+10}" width="38" height="40" rx="3" fill="${on?'var(--pen-soft)':'var(--card)'}" stroke="var(--ink)" stroke-width="1.5"/>`;
+    for(let j=0;j<5;j++)g+=`<rect x="${x+4+j*6.5}" y="${y}" width="5" height="16" fill="var(--grid)" stroke="var(--ink)" stroke-width=".8"/>`;
+    g+=txt(x+19,y+36,'10','text-anchor="middle" font-size="12" fill="var(--muted)"');
+    if(on)g+=txt(x+19,y+66,(i+1)*10,'text-anchor="middle" font-size="13" font-weight="700" fill="var(--red)"')}
+  if(extra>=1){const x=200,y=96;g+=`<rect x="${x}" y="${y}" width="38" height="40" rx="3" fill="var(--ok-soft)" stroke="var(--ok)" stroke-width="2"/>${txt(x+19,y+26,'+10','text-anchor="middle" font-size="12" font-weight="700" fill="var(--ok)"')}`}
+  if(extra>=2){g+=`<rect x="250" y="96" width="8" height="40" fill="var(--ok-soft)" stroke="var(--ok)" stroke-width="2"/>${txt(272,122,'+1','text-anchor="start" font-size="12" font-weight="700" fill="var(--ok)"')}`}
+  return svg(480,154,g,'一盒一盒數筆');
+}
+EX('s2','6.',ST(
+  [pensC(0,0),'一盒有 10 枝，所以<b>十枝十枝的數</b>。'],
+  [pensC(5,0),'10、20、30、40、50……'],
+  [pensC(10,0),'上面一排 10 盒是 <b>100</b> 枝。'],
+  [pensC(14,0),'下面再數：110、120、130、140。全部有 <b>140</b> 枝。'],
+  [pensC(14,1),'再多 10 枝：140＋10＝<b>150</b> 枝。'],
+  [pensC(14,2),'再多 1 枝：150＋1＝<b>151</b> 枝。']));
+
+/* 二7 */
+function flowersH(k){
+  const v=[24,143,134,164,42,148];let g='';
+  v.forEach((n,i)=>{const cx=44+i*82,cy=46,seen=i<k,ok=n%10===4;for(let j=0;j<10;j++){const a=j*36*Math.PI/180;g+=`<circle cx="${cx+30*Math.cos(a)}" cy="${cy+30*Math.sin(a)}" r="11" fill="${seen&&ok?'var(--ok-soft)':'var(--card)'}" stroke="var(--ink)" stroke-width="1.3"/>`}
+    const s=String(n);g+=`<circle cx="${cx}" cy="${cy}" r="25" fill="var(--card)" stroke="${seen?(ok?'var(--ok)':'var(--red)'):'var(--ink)'}" stroke-width="${seen?2.5:1.5}"/><text x="${cx}" y="${cy+6}" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink)">${seen?s.slice(0,-1)+`<tspan fill="${ok?'var(--ok)':'var(--red)'}" text-decoration="underline">${s.slice(-1)}</tspan>`:s}</text>`;
+    if(seen)g+=txt(cx,96,ok?'✔':'✗',`text-anchor="middle" font-size="16" font-weight="700" fill="${ok?'var(--ok)':'var(--red)'}"`)});
+  return svg(510,104,g,'看每個數的個位');
+}
+EX('s2','7.',ST(
+  [flowersH(0),'個位是<b>最右邊</b>的數字。一朵一朵看最右邊是不是 4。'],
+  [flowersH(1),'2<b>4</b>：個位是 4 ✔'],
+  [flowersH(3),'14<b>3</b>：個位是 3 ✗。13<b>4</b>：個位是 4 ✔'],
+  [flowersH(4),'16<b>4</b>：個位是 4 ✔'],
+  [flowersH(6),'4<b>2</b>：4 在十位，個位是 2 ✗。14<b>8</b>：個位是 8 ✗。答案是 <b>24、134、164</b>。']));
+
+/* 二8 */
+function gridHL(a,b,lab){
+  const U=32,X0=20,X=i=>X0+i*U;let base=gridItems(false);
+  let g='';for(let i=a;i<b;i++)g+=`<rect x="${X(i)}" y="8" width="${U}" height="${U}" fill="var(--red)" fill-opacity=".22"/>${txt(X(i)+U/2,30,i-a+1,'text-anchor="middle" font-size="13" font-weight="700" fill="var(--red)"')}`;
+  g+=`<rect x="${X(a)}" y="40" width="${(b-a)*U}" height="110" fill="var(--red)" fill-opacity=".07"/>`;
+  return base.replace('</svg>',g+'</svg>');
+}
+EX('s2','8.',ST(
+  [gridItems(false),'1 個格子是 1 公分。沿著虛線往上看，每樣東西佔了幾格？'],
+  [gridHL(0,4),'<b>ㄅ</b>：從最左邊開始，數 1、2、3、4，是 <b>4 公分</b>。'],
+  [gridHL(7,13),'<b>ㄆ</b>：不是從第 1 格開始喔！從它的頭開始數：1、2……6，是 <b>6 公分</b>。'],
+  [gridHL(2,14),'<b>ㄇ</b>：從它的尾巴數到筆尖：1、2……12，是 <b>12 公分</b>。']));
+
+/* 二9 */
+function ropeS(st){
+  const X0=20,u=56;let g=`<rect x="${X0}" y="8" width="${u*8}" height="8" fill="var(--grid)" stroke="var(--ink)" stroke-width="1.5"/>`;
+  for(let i=0;i<8;i++){g+=fig9(X0+u/2+i*u,30,2);if(st>=1)g+=txt(X0+u/2+i*u,124,i+1,'text-anchor="middle" font-size="14" font-weight="700" fill="var(--pen)"')}
+  if(st>=3)for(let i=0;i<4;i++)g+=`<path d="M${X0+i*2*u+4} 132 Q${X0+i*2*u+u} 150 ${X0+(i+1)*2*u-4} 132" fill="none" stroke="var(--red)" stroke-width="2"/>${txt(X0+i*2*u+u,164,`第 ${i+1} 個大的`,'text-anchor="middle" font-size="13" font-weight="700" fill="var(--red)"')}`;
+  if(st===2){g+=`<rect x="${X0}" y="20" width="${2*u}" height="92" fill="var(--red)" fill-opacity=".12"/>`;g+=fig9(X0+u,150,4).replace(/var\(--ink\)/g,'var(--red)')}
+  else if(st<3)g+=fig9(X0+u,150,4);
+  [0,2,8].forEach(i=>g+=`<line x1="${X0+i*u}" y1="2" x2="${X0+i*u}" y2="${st>=3?170:316}" stroke="var(--muted)" stroke-dasharray="5 4"/>`);
+  return svg(X0+u*8+20,st>=3?174:322,g,'用皮克敏量繩子');
+}
+EX('s2','9.',ST(
+  [ropeS(0),'繩子下面排著小皮克敏，手接著手。'],
+  [ropeS(1),'(1) 數一數：1、2……8，繩子和 <b>8 個</b>小皮克敏一樣長。'],
+  [ropeS(2),'(2) 大皮克敏張開手臂，剛好是 <b>2 個</b>小皮克敏那麼長。'],
+  [ropeS(3),'(3) 1 個大的＝2 個小的。把 8 個小的 2 個 2 個圈起來：2、4、6、8，圈了 <b>4 次</b>，要 <b>4 個</b>大皮克敏。']));
+
+/* 二10 */
+function fingerOne(name,c,k){
+  const p=6,x0=20;let g=rulerH(x0,60,40,p)+`<line x1="${x0}" y1="24" x2="${x0+c*10*p}" y2="24" stroke="var(--ink)" stroke-width="3"/><line x1="${x0}" y1="16" x2="${x0}" y2="32" stroke="var(--ink)" stroke-width="2"/><line x1="${x0+c*10*p}" y1="16" x2="${x0+c*10*p}" y2="32" stroke="var(--ink)" stroke-width="2"/>${txt(x0+c*10*p+10,29,name+' '+c+' 公分','text-anchor="start" font-size="14" font-weight="700" fill="var(--red)"')}`;
+  return svg(x0*2+60*p+120,84,g,name+'的長度');
+}
+EX('s2','10.',ST(
+  [fingers(false),'量的時候，尺的 <b>0 要對齊線的一端</b>，再看另一端停在哪個數字。'],
+  [fingerOne('大拇指',3),'大拇指的線停在 3，大約 <b>3 公分</b>。'],
+  [fingerOne('食指',4),'食指大約 <b>4 公分</b>。'],
+  [fingerOne('中指',5),'中指大約 <b>5 公分</b>。'],
+  [fingerOne('無名指',4),'無名指大約 <b>4 公分</b>。'],
+  [fingerOne('小拇指',3),'小拇指大約 <b>3 公分</b>。'],
+  [fingers(true),'比一比：5 公分最長，所以最長的是 <b>中指</b>。']));
+
+/* 二11 */
+function housesS(st){
+  let base=houses(st>=2);
+  let g='';
+  if(st===1){[0,1,3].forEach(i=>{const a=20+i*96+40,b=a+96;g+=`<path d="M${a} 48 Q${(a+b)/2} 30 ${b} 48" fill="none" stroke="var(--pen)" stroke-width="2"/>${txt((a+b)/2,34,'+2','text-anchor="middle" font-size="12" font-weight="700" fill="var(--pen)"')}`})}
+  if(st>=3){g+=`<path d="M60 214 Q${(60+444)/2} 250 444 214" fill="none" stroke="var(--red)" stroke-width="2" marker-end="url(#ar8)"/>${txt(252,248,'124＋8＝132','text-anchor="middle" font-size="14" font-weight="700" fill="var(--red)"')}<defs><marker id="ar8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--red)"/></marker></defs>`}
+  if(st>=4){g+=`<path d="M440 152 H70" stroke="var(--ok)" stroke-width="3" marker-end="url(#ar9)"/>${txt(255,147,'明明往左走到丹丹家','text-anchor="middle" font-size="14" font-weight="700" fill="var(--ok)"')}<defs><marker id="ar9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--ok)"/></marker></defs>`}
+  return base.replace('viewBox="0 0 510 238"','viewBox="0 0 510 260"').replace('</svg>',g+'</svg>');
+}
+EX('s2','11.',ST(
+  [housesS(0),'先找門牌號碼的規則。'],
+  [housesS(1),'上面一排：125、127……每一間<b>多 2</b>，都是單數。127＋2＝<b>129</b>。'],
+  [housesS(2),'下面一排：124、126、128、130，每一間也多 2，都是雙數。130＋2＝<b>132</b>。'],
+  [housesS(3),'(2) 丹丹家是 124，明明家多 8 號：124＋8＝<b>132</b>，就是下面最右邊那一間。'],
+  [housesS(4),'(3) 明明家在最右邊，丹丹家在最左邊，所以明明要往<b>左邊</b>走。']));
+
+/* 四 compare */
+const cmpT=(a,b,col,sym)=>{const A=String(a),B=String(b);return `<table class="pv"><tr><th></th><th>百位</th><th>十位</th><th>個位</th></tr>${[A,B].map((n,r)=>`<tr><th>${n}</th>${[...n].map((d,i)=>`<td style="${i===col?'background:var(--pen-soft);color:var(--pen);font-weight:700':''}">${d}</td>`).join('')}</tr>`).join('')}</table>${sym?big(`${a} ${sym} ${b}`):''}`};
+const cmpEX=(s,n,a,b,sym,why)=>EX(s,n,ST(
+  [cmpT(a,b,-1),'把兩個數放進定位板，從<b>最大的位（百位）</b>開始比。'],
+  [cmpT(a,b,0),'百位一樣都是 1，比不出來，往下一位比。'],
+  [cmpT(a,b,1),why],
+  [cmpT(a,b,1,sym),`所以 ${a} <b>${sym}</b> ${b}。十位比出來了，個位就不用比。`]));
+cmpEX('s4','1.',135,153,'＜','十位：3 比 5 小，所以 135 比較小。');
+cmpEX('s4','2.',198,157,'＞','十位：9 比 5 大，所以 198 比較大。');
+cmpEX('s4','3.',149,191,'＜','十位：4 比 9 小，所以 149 比較小。不要去看個位 9 比 1 大喔！');
+cmpEX('s5','3.(2)',138,124,'＞','十位：3 比 2 大，所以 138 比較大，白巧克力球比較多。');
+
+/* 五 bar models */
+function barM(total,aLab,aVal,bLab,bVal,ask){
+  const W=400,X=20,wa=Math.round(W*aVal/(aVal+bVal)),tc=ask==='t'?'var(--red)':'var(--ink)';let g='';
+  g+=`<path d="M${X} 38 Q${X} 28 ${X+12} 28 H${X+W/2-12} Q${X+W/2} 28 ${X+W/2} 20 Q${X+W/2} 28 ${X+W/2+12} 28 H${X+W-12} Q${X+W} 28 ${X+W} 38" fill="none" stroke="${tc}" stroke-width="1.5"/>${txt(X+W/2,14,total,`text-anchor="middle" font-size="14" font-weight="700" fill="${tc}"`)}`;
+  g+=`<rect x="${X}" y="42" width="${wa}" height="32" fill="var(--grid)" stroke="var(--ink)" stroke-width="1.5"/><rect x="${X+wa}" y="42" width="${W-wa}" height="32" fill="${ask==='b'?'var(--red-soft)':'var(--pen-soft)'}" stroke="${ask==='b'?'var(--red)':'var(--ink)'}" stroke-width="1.5" ${ask==='b'?'stroke-dasharray="5 3"':''}/>`;
+  g+=txt(X+wa/2,63,aLab)+txt(X+wa+(W-wa)/2,63,bLab)+txt(X+wa/2,96,aVal+'')+txt(X+wa+(W-wa)/2,96,ask==='b'?'？':bVal+'',ask==='b'?'text-anchor="middle" font-size="16" font-weight="700" fill="var(--red)"':'');
+  return svg(440,104,g,'線段圖');
+}
+
+function bar45(show){return barM('45 個','媽媽做的',18,'美美做的',27,show?'':'b')}
+EX('s5','1.(1)',ST(
+  [barM('現在 89 元','原本',17,'奶奶給的',72,'b'),'畫線段圖：原本的 17 元＋奶奶給的＝現在的 89 元。紅色是不知道的部分。'],
+  [big('89－17＝（　）'),'全部是 89，知道其中一部分是 17，要找另一部分，用<b>減法</b>。'],
+  subSteps(89,17,' 元'),
+  [barM('現在 89 元','原本',17,'奶奶給的',72),'奶奶給了 <b>72 元</b>。驗算：17＋72＝89 ✔']));
+EX('s5','1.(2)',ST(
+  [menu2(),'一共付 71 元，裡面有一個是 45 元的鬆餅。'],
+  [big('71－45＝（　）'),'用全部的錢減掉鬆餅的錢，就是另一樣點心的錢。'],
+  subSteps(71,45,' 元'),
+  [menu2().replace('<td>26 元</td>','<td style="background:var(--red-soft);color:var(--red);font-weight:700">26 元</td>'),'26 元的是<b>馬卡龍</b>！']));
+EX('s5','2.',ST(
+  [barM('布丁的價錢','身上的錢',58,'還差',7,'t'),'「還差 7 元才夠」，表示布丁的價錢＝身上的 58 元＋還差的 7 元。'],
+  [big('58＋7＝（　）'),'兩個部分合起來，用<b>加法</b>。'],
+  addSteps(58,7,' 元'),
+  [barM('布丁 65 元','身上的錢',58,'還差',7),'一組焦糖布丁要 <b>65 元</b>。']));
+EX('s5','3.(1)',ST(
+  [pots(),'看兩個鍋子：甲鍋又高又寬，乙鍋又矮又小。'],
+  [pots().replace('<text x="60" y="56"','<circle cx="60" cy="52" r="20" fill="var(--red-soft)" stroke="var(--red)" stroke-width="2"/><text x="60" y="56"'),'甲鍋可以裝的東西比較多，容量比較大，在 <b>甲</b> 下面打 ✓。']));
+EX('s5','3.(3)',ST(
+  [barM('一共？','上午',45,'下午',27,'t'),'上午和下午<b>合起來</b>，用加法：45＋27。'],
+  addSteps(45,27,' 個'),
+  [barM('一共 72 個','上午',45,'下午',27),'一共賣出 <b>72 個</b>檸檬塔。']));
+EX('s5','3.(4)',ST(
+  [bar45(false),'看線段圖：全部 45 個，媽媽做 18 個，美美做的不知道。'],
+  [big('18＋（　）＝45'),'有括號的算式：媽媽的 18 個＋美美的（　）個＝45 個。'],
+  [big('45－18＝（　）'),'要找括號裡的數，用全部減掉媽媽做的。'],
+  subSteps(45,18,' 個'),
+  [bar45(true),'美美做了 <b>27 個</b>。驗算：18＋27＝45 ✔']));
+
 const CORNERS=[];
 const LINE={x0:24,px:4,max:100,target:0};
 const MONEY=[{v:1000,ic:'k'},{v:100,ic:'h'},{v:10,ic:'t'},{v:1,ic:'o'}];
