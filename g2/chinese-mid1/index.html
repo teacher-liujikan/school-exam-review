@@ -1,0 +1,987 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>二上國語期中評量檢討</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Huninn&family=Bpmf+Huninn&family=Noto+Sans+TC:wght@400;700&display=swap">
+<style>
+/* Layout: one narrow column on graph paper, sticky progress strip, one card per question, red-pen ○ / ✗ marks */
+:root{
+  --paper:#f5f7fb; --grid:#e2e8f1; --card:#ffffff; --ink:#1d2742; --muted:#5a647a;
+  --pen:#2753c9; --pen-soft:#e7edfb; --red:#d0362b; --red-soft:#fdeceb;
+  --ok:#1d855a; --ok-soft:#e5f5ec; --line:#cfd7e4; --shade:#c9ced6; --leaf:#5f8f4e; --cheese:#f3e6c8;
+  --f-display:"Iansui","Huninn","Noto Sans TC",sans-serif;
+  --f-body:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-num:"Noto Sans TC","PingFang TC",system-ui,sans-serif;
+  --lh:1.75;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11161f; --grid:#1b2230; --card:#18202c; --ink:#e5e9f1; --muted:#9ba4b6;
+  --pen:#86a2ff; --pen-soft:#1f2a45; --red:#ff6f62; --red-soft:#3a1f1e;
+  --ok:#52c48e; --ok-soft:#173226; --line:#2e3849; --shade:#4a5262; --leaf:#86b874; --cheese:#4a3f28; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11161f; --grid:#1b2230; --card:#18202c; --ink:#e5e9f1; --muted:#9ba4b6;
+  --pen:#86a2ff; --pen-soft:#1f2a45; --red:#ff6f62; --red-soft:#3a1f1e;
+  --ok:#52c48e; --ok-soft:#173226; --line:#2e3849; --shade:#4a5262; --leaf:#86b874; --cheese:#4a3f28; color-scheme:dark}
+body.bpmf{--f-body:"Bpmf Huninn","Huninn","Noto Sans TC",sans-serif; --lh:2.25}
+
+*{box-sizing:border-box}
+body{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:var(--lh)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 60px}
+header.top{display:flex;flex-direction:column;gap:6px;padding-block:8px 14px}
+.school{font-size:14px;color:var(--muted);letter-spacing:.05em}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,6vw,40px);line-height:1.25;margin:0;text-wrap:balance}
+.lead{margin:0;color:var(--muted);max-width:60ch}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+button{font:inherit;cursor:pointer}
+.btn{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 14px;font-size:15px;line-height:1.6}
+.btn:hover{border-color:var(--pen)}
+.btn.primary{background:var(--pen);border-color:var(--pen);color:var(--card)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,.opt:focus-visible,.hit:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;margin-block:8px 20px;display:flex;flex-direction:column;gap:8px}
+.score{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.score b{font-family:var(--f-num);font-size:26px;font-variant-numeric:tabular-nums;color:var(--red)}
+.score span{color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:14px;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:0 9px;line-height:1.9;background:var(--paper);font-variant-numeric:tabular-nums}
+.chip.done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.bar{height:6px;border-radius:6px;background:var(--grid);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .4s}
+
+section.sec{margin-top:34px;scroll-margin-top:130px}
+.sec-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.sec-h h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0}
+.sec-h small{color:var(--muted);font-size:14px}
+.cards{display:flex;flex-direction:column;gap:14px}
+
+.q{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:16px 18px 14px;scroll-margin-top:130px}
+.q.right{border-color:var(--ok)}
+.q.wrong{border-color:var(--red)}
+.qn{font-family:var(--f-num);font-weight:700;color:var(--pen);margin-right:6px}
+.stem{margin:0 0 8px}
+.mark{position:absolute;top:-12px;right:-8px;font-family:var(--f-display);font-size:46px;line-height:1;color:var(--red);pointer-events:none;transform:rotate(-8deg);opacity:0;transition:opacity .2s}
+.q.right .mark,.q.wrong .mark{opacity:1}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}
+@media (max-width:480px){.opts{grid-template-columns:1fr}}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:6px 12px;display:flex;gap:8px;align-items:center;min-width:0}
+.opt .k{font-family:var(--f-num);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--muted);font-size:14px;flex:none}
+.opt.sel{border-color:var(--pen);background:var(--pen-soft)}
+.opt.sel .k{background:var(--pen);border-color:var(--pen);color:var(--card)}
+.opt.bad{border-color:var(--red);background:var(--red-soft)}
+.opt.good{border-color:var(--ok);background:var(--ok-soft)}
+
+input.blank,select.blank{font-family:var(--f-num);font-size:17px;color:var(--pen);background:var(--paper);border:none;border-bottom:2px solid var(--muted);border-radius:4px 4px 0 0;padding:1px 6px;width:5.2em;text-align:center;font-variant-numeric:tabular-nums;vertical-align:baseline}
+input.blank.w{width:7em}
+input.blank.s{width:3.6em}
+input.blank.box{width:1.9em;height:1.9em;padding:0;border:2px solid var(--muted);border-radius:4px;font-size:20px}
+select.blank{width:auto;padding-right:2px;font-family:"Huninn","Noto Sans TC",sans-serif}
+.blank.ok{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.blank.no{border-color:var(--red);color:var(--red);background:var(--red-soft)}
+.row{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+.sub{display:block;margin:4px 0}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.fb{margin-top:10px;border-radius:10px;padding:8px 12px;font-size:16px}
+.fb.ok{background:var(--ok-soft);color:var(--ink)}
+.fb.no{background:var(--red-soft);color:var(--ink)}
+.fb strong{font-family:var(--f-display);font-weight:400;font-size:20px}
+.fb.ok strong{color:var(--ok)} .fb.no strong{color:var(--red)}
+.explain{margin-top:10px;border-left:3px solid var(--pen);padding:4px 0 4px 12px}
+.explain h4{margin:0 0 2px;font-size:15px;color:var(--pen);letter-spacing:.05em}
+.explain p{margin:4px 0}
+
+.fig{display:block;margin:6px auto;max-width:100%;height:auto}
+.figrow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+.scroll{overflow-x:auto}
+.ic{display:inline-grid;place-items:center;font-family:var(--f-num);font-size:13px;line-height:1;border:1.5px solid var(--ink);color:var(--ink);vertical-align:middle;margin:0 2px}
+.ic.k{padding:3px 4px;border-radius:2px}
+.ic.h{padding:3px 4px;border-radius:2px}
+.ic.t{width:24px;height:24px;border-radius:50%}
+.ic.o{width:18px;height:18px;border-radius:50%;font-size:11px}
+.bill{display:inline-grid;place-items:center;width:64px;height:30px;border:1.5px solid var(--ink);border-radius:4px;font-family:var(--f-num);font-size:13px;vertical-align:middle;margin:0 4px;background:var(--pen-soft)}
+table.pv{border-collapse:collapse;margin:8px auto;font-family:var(--f-num)}
+table.pv td,table.pv th{border:1.5px solid var(--ink);padding:4px 14px;text-align:center;font-weight:400}
+.seq{font-family:var(--f-num);line-height:2.4}
+
+.vert{display:inline-grid;grid-template-columns:repeat(var(--c),1.15em);font-family:var(--f-num);font-size:20px;line-height:1.5;text-align:center;font-variant-numeric:tabular-nums;margin:6px 0 6px 6px}
+.vert span.l{border-bottom:2px solid var(--ink)}
+.vert span.r{color:var(--red)}
+.verts{display:flex;flex-wrap:wrap;gap:10px 30px}
+
+.vadd{display:inline-grid;grid-template-columns:repeat(5,2.1em);gap:4px 0;font-family:var(--f-num);font-size:20px;text-align:center;align-items:center;margin:6px 0}
+.vadd .ul{border-bottom:2px solid var(--ink);padding-bottom:4px}
+
+.tray{min-height:64px;border:1.5px dashed var(--line);border-radius:10px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0;background:var(--paper)}
+.tray .empty{color:var(--muted);font-size:14px}
+.tok{border:none;background:none;padding:0;color:var(--ink)}
+.tok .ic{pointer-events:none}
+.addrow{display:flex;flex-wrap:wrap;gap:8px}
+
+svg text{font-family:var(--f-num)}
+.hit{cursor:pointer}
+.confirm{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
+footer{margin-top:40px;color:var(--muted);font-size:14px;text-align:center}
+.steps{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:grid;grid-template-columns:repeat(var(--cols,7),minmax(0,1fr));gap:4px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:6px;margin-block:8px 20px}
+@media (max-width:560px){.steps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.step{border:1.5px solid transparent;background:none;color:var(--ink);border-radius:10px;padding:4px 2px;display:flex;flex-direction:column;align-items:center;line-height:1.35;min-width:0}
+.step b{font-family:var(--f-display);font-weight:400;font-size:18px}
+.step small{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.step.cur{border-color:var(--pen);background:var(--pen-soft)}
+.step.done small{color:var(--ok)}
+.step:disabled{opacity:.4;cursor:not-allowed}
+.step.test b{color:var(--red)}
+.muted{color:var(--muted)}
+.stepper{margin:10px 0;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);display:flex;flex-direction:column;gap:8px}
+.svbox{display:flex;justify-content:center;background:var(--card);border-radius:10px;padding:10px 6px;overflow-x:auto}
+.svf,.ug{display:inline-grid;grid-template-columns:repeat(var(--c),1.4em);font-family:var(--f-num);font-size:30px;text-align:center;line-height:1.35;font-variant-numeric:tabular-nums}
+.ug{grid-template-columns:1.2em 2.4em auto 1.6em auto;column-gap:4px}
+.ug .u{font-family:var(--f-body);font-size:18px;align-self:center;padding:0 2px}
+.svf span,.ug span{min-height:1.35em;border-radius:4px}
+.svf .sm,.ug .sm{font-size:16px;font-weight:700;color:var(--red);min-height:1.3em;line-height:1.3em;align-self:end}
+.svf .x{text-decoration:line-through;text-decoration-color:var(--red);color:var(--muted)}
+.svf .ul,.ug .ul{border-bottom:3px solid var(--ink);border-radius:0}
+.svf .rs,.ug .rs{color:var(--pen);font-weight:700}
+.svf .hl,.ug .hl{background:var(--pen-soft)}
+.svtext{margin:0;min-height:3.4em;font-size:17px}
+.svtext .cr{color:var(--red)}
+.svnav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.svcount{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+.bigeq{font-family:var(--f-num);font-size:24px;font-weight:700;margin:6px 0;color:var(--ink)}
+.mh{font-weight:700;color:var(--pen);margin-top:10px!important}
+.anglab{margin:10px 0;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper)}
+.anglab p{margin:4px 0}
+.anglab svg{background:var(--card);border-radius:10px;touch-action:manipulation}
+.adot{cursor:pointer}.adot:hover .dv{fill:var(--pen)}
+.adot:focus-visible{outline:none}.adot:focus-visible .dv{fill:var(--pen);r:8}
+.angstep{border-radius:8px;padding:2px 8px;background:var(--pen-soft)}
+.angstep.done{background:var(--ok-soft)}.angstep.warn{background:var(--red-soft)}
+.pvlab{margin:10px 0;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper)}
+.pvlab p{margin:4px 0}
+.pvpick{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.pvpick .k{font-family:var(--f-num);font-size:13px;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;margin-right:2px}
+.pvpick .btn.sel{border-color:var(--pen);background:var(--pen-soft)}
+.pvpick .btn.good{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.pvpick .btn.bad{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+td.pvslot{font-weight:700;font-size:22px;color:var(--ink)}
+td.pvslot.on{color:var(--pen);background:var(--pen-soft)}
+.pvfb{min-height:1.6em;border-radius:8px;padding:0 8px}
+.pvfb.ok{background:var(--ok-soft)} .pvfb.no{background:var(--red-soft)}
+.pvsum{background:var(--card);border:1.5px solid var(--ok);border-radius:10px;padding:6px 12px!important}
+.trap{display:inline-block;background:var(--red-soft);color:var(--red);border:1.5px solid var(--red);border-radius:8px;padding:2px 12px;margin:4px 0}
+.hrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:4px 0}
+.hrow .lbl{font-family:var(--f-num);font-size:15px;color:var(--muted);min-width:3.4em}
+header.top{position:relative;padding-right:110px}
+.qrthumb{position:absolute;top:4px;right:0;display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:6px 6px 2px;cursor:zoom-in}
+.qrthumb small{font-size:12px;color:#1d2742;line-height:1.4}
+.qrthumb img,.qrthumb canvas{display:block;width:72px!important;height:72px!important}
+.qrmodal{position:fixed;inset:0;z-index:50;background:rgba(17,22,31,.72);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-left,0px))}
+.qrcard{background:#fff;color:#1d2742;border-radius:18px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:100%;text-align:center}
+.qrcard h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0}
+#qrBig img,#qrBig canvas{display:block;width:min(70vw,60vh,420px)!important;height:auto!important}
+.qrurl{margin:0;font-family:var(--f-num);font-size:14px;color:#5a647a;word-break:break-all;user-select:all}
+.allright{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:0 0 14px;padding:10px 14px;background:var(--card);border:1.5px dashed var(--ok);border-radius:12px}
+.allright .muted{font-size:14px;flex:1 1 220px}
+.mk.big2{font-size:18px;border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.slot{display:inline-block;min-width:3.2em;border-bottom:2px solid var(--muted);text-align:center;color:var(--red);font-family:var(--f-num);font-weight:700;padding:0 4px;line-height:1.5}
+.slot.wide{min-width:9em}
+.slot.sbox{min-width:1.9em;height:1.9em;border:2px solid var(--muted);border-radius:4px;line-height:1.75}
+.opt.ro{cursor:default}
+.opt.ansopt{border-color:var(--red);box-shadow:0 0 0 2px var(--red) inset}
+.opt.ansopt .k{border-color:var(--red);color:var(--red)}
+.ansline{margin:8px 0 0;color:var(--ink)}
+.ansline b{color:var(--red);font-family:var(--f-num)}
+.selfmark{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.selfmark .ask{color:var(--muted);font-size:15px}
+.mk{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:4px 16px;font-size:17px}
+.mk.ok.on{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.mk.no.on{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+.q.marked.right{border-color:var(--ok)} .q.marked.wrong{border-color:var(--red)}
+details.explain summary{cursor:pointer;color:var(--pen);font-size:15px;letter-spacing:.03em}
+details.explain[open] summary{margin-bottom:4px}
+.explain hr{border:none;border-top:1px dashed var(--line);margin:10px 0}
+.finish{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:22px;text-align:center}
+.btn.big{font-size:19px;padding:8px 28px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.teacher{background:var(--card);border:2px solid var(--red);border-radius:16px;padding:28px 20px;margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.teacher h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0}
+.teacher .big{font-family:var(--f-display);font-size:clamp(24px,5.5vw,32px);line-height:1.5;margin:6px 0;color:var(--red)}
+.stamp{width:84px;height:84px;border:3px solid var(--red);border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-size:38px;color:var(--red);transform:rotate(-10deg)}
+.hold{position:relative;overflow:hidden;border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:999px;padding:10px 28px;font-size:17px;user-select:none;-webkit-user-select:none;touch-action:none;margin-top:6px}
+.hold .fill{position:absolute;inset:0;width:0;background:var(--ok-soft)}
+.hold .lbl{position:relative}
+.hold.holding .fill{width:100%;transition:width 2s linear}
+.result{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 16px;margin-bottom:14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.result b{font-family:var(--f-num);font-size:30px;color:var(--red)}
+fieldset{border:none;padding:0;margin:0;min-width:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.from{margin:0 0 2px;font-size:13px;color:var(--muted)}
+.nl{margin:10px 0;padding:10px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper)}
+.nl svg .s1,.nl svg .s2,.nl svg .s3,.nl svg .pt{opacity:0;transition:opacity .7s}
+.nl svg .s1line{stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.4s ease}
+.nl svg.k1 .s1{opacity:1;transition-delay:1.2s}
+.nl svg.k1 .s1line{stroke-dashoffset:0}
+.nl svg.k2 .s2,.nl svg.k3 .s3,.nl svg.k4 .pt{opacity:1}
+.nlcap{min-height:3.4em;margin:6px 2px;font-size:17px}
+.nlbtns{display:flex;flex-wrap:wrap;gap:8px}
+.opts.one{grid-template-columns:1fr}
+.opt .k{font-family:var(--f-num)}
+.nb{font-family:"Huninn","Noto Sans TC",sans-serif}
+.gc{font-size:1.3em;font-weight:700;color:var(--pen);margin:0 2px}
+.zy{font-family:"Huninn","Noto Sans TC",sans-serif;color:var(--muted);font-size:.92em}
+.wrongs{margin:6px 0;line-height:2.4}
+.wrongs u{text-decoration-color:var(--red);text-decoration-thickness:2px;color:var(--red)}
+ol.steps2{list-style:none;padding:0;margin:6px 0}
+.passage{margin:8px 0;border:1.5px solid var(--line);border-radius:12px;background:var(--paper)}
+.passage summary{cursor:pointer;padding:6px 12px;color:var(--pen);font-weight:700}
+.ptext{padding:0 14px 8px;max-width:62ch}
+.ptext h4{margin:4px 0;font-size:18px;text-align:center}
+.ptext p{margin:6px 0;text-indent:2em}
+.refa{font-family:var(--f-body)!important}
+.orig{display:inline-block;font-size:14px;color:var(--muted);margin-left:6px}
+input.blank.t{width:10.5em;font-family:var(--f-body)}
+.bubs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0}
+@media (max-width:560px){.bubs{grid-template-columns:1fr}}
+.bub{border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--paper);display:flex;flex-direction:column;font-family:var(--f-num);font-size:15px;line-height:1.6}
+.bub b{font-family:var(--f-body);font-weight:700;color:var(--pen);margin-bottom:2px}
+.menu{max-width:340px;margin:8px auto;border:2px solid var(--ink);border-radius:14px;padding:10px 14px;background:var(--paper)}
+.mh2{background:var(--ink);color:var(--card);border-radius:999px;text-align:center;font-weight:700;padding:2px 10px;margin-bottom:6px}
+.menu .mt{margin:6px 0 0;font-weight:700;font-size:15px}
+.mr{display:flex;align-items:baseline;gap:6px;font-size:15px}
+.mr i{flex:1;border-bottom:2px dotted var(--line)}
+.mr span:last-child{font-family:var(--f-num)}
+.mr small{color:var(--muted);font-size:12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top"><button type="button" class="qrthumb" id="qrOpen" aria-label="放大 QR code，讓學生用平板掃描"><span id="qrSmall"></span><small>學生掃我</small></button>
+    <div class="school">陽明國小・115 學年度第一學期・二年級</div>
+    <h1>國語期中評量 自己來訂正</h1>
+    <p class="lead">拿出老師改好的考卷，一大題一大題檢討。每題點「我寫對了」或「我寫錯了」，寫錯的題目看詳解、在考卷上訂正。一大題檢討好，先給老師批改，再做下一大題；全部寫對的大題不用給老師看，可以直接往下做。每一大題都完成後，會出現錯題測驗。</p>
+    <div class="tools">
+      <button class="btn" id="bpmfBtn" type="button">注音：開</button>
+      <span id="resetZone"><button class="btn" id="resetBtn" type="button">從頭開始</button></span>
+    </div>
+  </header>
+
+  <nav class="steps" id="steps" aria-label="檢討進度"></nav>
+
+  <main id="main"></main>
+  <div class="qrmodal" id="qrModal" hidden><div class="qrcard" role="dialog" aria-modal="true" aria-labelledby="qrTitle"><h2 id="qrTitle">拿平板掃這裡，開始檢討考卷</h2><div id="qrBig"></div><p class="qrurl" id="qrUrl"></p><button type="button" class="btn primary" id="qrClose">關閉</button></div></div>
+  <footer>記錄只存在這台裝置的瀏覽器裡。</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const norm=s=>String(s??'').replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-65248)).replace(/[,，\s]/g,'').trim();
+const KEY='g2-chinese-mid-115-1';
+let state={v:{},st:{},tries:{},bpmf:true};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s) state=Object.assign(state,s);}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
+
+function vert(a,op,b,r){
+  a=String(a);b=String(b);r=String(r);
+  const w=Math.max(a.length,b.length+1,r.length);
+  const rows=[a.padStart(w),op+b.padStart(w-1),r.padStart(w)];
+  let h='';
+  rows.forEach((row,i)=>{[...row].forEach(ch=>{h+=`<span class="${i===1?'l':''}${i===2?'r':''}">${ch===' '?'':ch}</span>`})});
+  return `<div class="vert" style="--c:${w}">${h}</div>`;
+}
+const ic={k:'<span class="ic k">1000</span>',h:'<span class="ic h">100</span>',t:'<span class="ic t">10</span>',o:'<span class="ic o">1</span>'};
+
+/* ---------- drawings ---------- */
+function blocksSVG(){
+  const ln='stroke="var(--ink)" stroke-width="0.8" fill="none"';
+  let g='';
+  const cube=(x,y,s)=>{const d=s*.35;let o=`<rect x="${x}" y="${y}" width="${s}" height="${s}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"/>`;
+    o+=`<polygon points="${x},${y} ${x+d},${y-d} ${x+s+d},${y-d} ${x+s},${y}" fill="var(--pen-soft)" stroke="var(--ink)" stroke-width="1.2"/>`;
+    o+=`<polygon points="${x+s},${y} ${x+s+d},${y-d} ${x+s+d},${y+s-d} ${x+s},${y+s}" fill="var(--grid)" stroke="var(--ink)" stroke-width="1.2"/>`;
+    for(let i=1;i<10;i++){const t=s*i/10;o+=`<line x1="${x+t}" y1="${y}" x2="${x+t}" y2="${y+s}" ${ln}/><line x1="${x}" y1="${y+t}" x2="${x+s}" y2="${y+t}" ${ln}/>`;
+      o+=`<line x1="${x+t}" y1="${y}" x2="${x+t+d}" y2="${y-d}" ${ln}/><line x1="${x+s}" y1="${y+t}" x2="${x+s+d}" y2="${y+t-d}" ${ln}/>`}
+    return o};
+  const flat=(x,y,w)=>{const d=w*.35,th=6;let o=`<polygon points="${x},${y} ${x+d},${y-d} ${x+w+d},${y-d} ${x+w},${y}" fill="var(--pen-soft)" stroke="var(--ink)" stroke-width="1.2"/>`;
+    o+=`<rect x="${x}" y="${y}" width="${w}" height="${th}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"/><polygon points="${x+w},${y} ${x+w+d},${y-d} ${x+w+d},${y-d+th} ${x+w},${y+th}" fill="var(--grid)" stroke="var(--ink)" stroke-width="1.2"/>`;
+    for(let i=1;i<10;i++){const t=w*i/10;o+=`<line x1="${x+t}" y1="${y}" x2="${x+t+d}" y2="${y-d}" ${ln}/><line x1="${x+t}" y1="${y}" x2="${x+t}" y2="${y+th}" ${ln}/>`;const u=d*i/10;o+=`<line x1="${x+u}" y1="${y-u}" x2="${x+w+u}" y2="${y-u}" ${ln}/>`}
+    return o};
+  const unit=(x,y)=>{const s=9,d=3.5;return `<rect x="${x}" y="${y}" width="${s}" height="${s}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.1"/><polygon points="${x},${y} ${x+d},${y-d} ${x+s+d},${y-d} ${x+s},${y}" fill="var(--pen-soft)" stroke="var(--ink)" stroke-width="1"/><polygon points="${x+s},${y} ${x+s+d},${y-d} ${x+s+d},${y+s-d} ${x+s},${y+s}" fill="var(--grid)" stroke="var(--ink)" stroke-width="1"/>`};
+  for(let i=0;i<3;i++) g+=cube(20+i*82,40,62);
+  g+=flat(20,140,62)+flat(108,140,62);
+  for(let i=0;i<5;i++) g+=unit(200+i*15,138);
+  return `<svg class="fig" viewBox="0 0 300 160" width="300" role="img" aria-label="3 個千的積木、2 片百的板子、5 個一的小方塊">${g}</svg>`;
+}
+function clockSVG(h,size){
+  size=size||170;let g=`<circle cx="100" cy="100" r="90" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/>`;
+  for(let i=0;i<60;i++){const a=i*6*Math.PI/180,r1=i%5?84:78;g+=`<line x1="${100+86*Math.sin(a)}" y1="${100-86*Math.cos(a)}" x2="${100+r1*Math.sin(a)}" y2="${100-r1*Math.cos(a)}" stroke="var(--ink)" stroke-width="${i%5?1:2.2}"/>`}
+  for(let n=1;n<=12;n++){const a=n*30*Math.PI/180;g+=`<text x="${100+64*Math.sin(a)}" y="${100-64*Math.cos(a)+7}" text-anchor="middle" font-size="20" fill="var(--ink)">${n}</text>`}
+  if(h){const a=h*30*Math.PI/180;
+    g+=`<path d="M100 100 L100 30 A70 70 0 ${h>6?1:0} 1 ${100+70*Math.sin(a)} ${100-70*Math.cos(a)} Z" fill="var(--red)" opacity=".18"/>`;
+    g+=`<line x1="100" y1="100" x2="100" y2="26" stroke="var(--pen)" stroke-width="3.5" stroke-linecap="round"/>`;
+    g+=`<line x1="100" y1="100" x2="${100+46*Math.sin(a)}" y2="${100-46*Math.cos(a)}" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/>`;
+    g+=`<text x="100" y="${h>3?160:150}" text-anchor="middle" font-size="16" fill="var(--red)">${h} 點</text>`}
+  g+=`<circle cx="100" cy="100" r="5" fill="var(--ink)"/>`;
+  return `<svg class="fig" viewBox="0 0 200 200" width="${size}" role="img" aria-label="鐘面${h?h+'點':''}">${g}</svg>`;
+}
+function triSVG(){
+  return `<svg class="fig" viewBox="40 50 470 260" width="360" role="img" aria-label="三角形，頂點 ㄅ 在上，ㄆ 在左下，ㄇ 在右下"><polygon points="352,83 78,285 455,285" fill="none" stroke="var(--ink)" stroke-width="3"/><text x="345" y="72" font-size="26" fill="var(--ink)" style="font-family:var(--f-body)">ㄅ</text><text x="44" y="295" font-size="26" fill="var(--ink)" style="font-family:var(--f-body)">ㄆ</text><text x="465" y="295" font-size="26" fill="var(--ink)" style="font-family:var(--f-body)">ㄇ</text></svg>`;
+}
+function numLineSVG(){
+  let g=`<line x1="20" y1="40" x2="470" y2="40" stroke="var(--ink)" stroke-width="2"/><polygon points="470,35 480,40 470,45" fill="var(--ink)"/>`;
+  for(let i=0;i<=15;i++){const x=20+i*29;g+=`<line x1="${x}" y1="32" x2="${x}" y2="40" stroke="var(--ink)" stroke-width="1.5"/><text x="${x}" y="62" text-anchor="middle" font-size="15" fill="var(--ink)">${i}</text>`}
+  g+=`<text x="20" y="18" font-size="15" fill="var(--muted)" style="font-family:var(--f-body)">左</text><text x="455" y="18" font-size="15" fill="var(--muted)" style="font-family:var(--f-body)">右</text>`;
+  return `<div class="scroll"><svg class="fig" viewBox="0 0 490 72" width="490" role="img" aria-label="0 到 15 的數線">${g}</svg></div>`;
+}
+function rulerH(x0,mm,y,pxmm){
+  let g=`<rect x="${x0-8}" y="${y}" width="${mm*pxmm+16}" height="36" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"/>`;
+  for(let i=0;i<=mm;i++){const x=x0+i*pxmm,l=i%10===0?16:i%5===0?11:7;g+=`<line x1="${x}" y1="${y}" x2="${x}" y2="${y+l}" stroke="var(--ink)" stroke-width="${i%10?0.8:1.4}"/>`;if(i%10===0)g+=`<text x="${x}" y="${y+31}" text-anchor="middle" font-size="12" fill="var(--ink)">${i/10}</text>`}
+  g+=`<text x="${x0+mm*pxmm+12}" y="${y+31}" font-size="11" fill="var(--muted)">cm</text>`;
+  return g;
+}
+function barRulerSVG(a,b){
+  const p=5,x0=20;
+  return `<div class="scroll"><svg class="fig" viewBox="0 0 400 74" width="400" role="img" aria-label="尺上的灰色長條"><rect x="${x0+a*p}" y="14" width="${(b-a)*p}" height="18" fill="var(--shade)"/>${rulerH(x0,70,32,p)}</svg></div>`;
+}
+function sproutSVG(){
+  const p=6,base=320,top=base-47*p,rx=40;
+  let g=`<rect x="${rx-34}" y="${base-50*p-8}" width="34" height="${50*p+16}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"/>`;
+  for(let i=0;i<=50;i++){const y=base-i*p,l=i%10===0?16:i%5===0?11:7;g+=`<line x1="${rx}" y1="${y}" x2="${rx-l}" y2="${y}" stroke="var(--ink)" stroke-width="${i%10?0.8:1.4}"/>`;if(i%10===0)g+=`<text x="${rx-24}" y="${y+4}" text-anchor="middle" font-size="12" fill="var(--ink)">${i/10}</text>`}
+  g+=`<text x="${rx-17}" y="${base+26}" text-anchor="middle" font-size="11" fill="var(--muted)">cm</text>`;
+  g+=`<line x1="${rx}" y1="${top}" x2="260" y2="${top}" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="7 5"/><line x1="${rx}" y1="${base}" x2="260" y2="${base}" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="7 5"/>`;
+  const cx=170;
+  g+=`<path d="M${cx-3} ${base} C ${cx-4} ${base-90}, ${cx-5} ${top+60}, ${cx-2} ${top+22} L ${cx+4} ${top+22} C ${cx+3} ${top+60}, ${cx+4} ${base-90}, ${cx+3} ${base} Z" fill="var(--leaf)" opacity=".75"/>`;
+  g+=`<path d="M${cx} ${top+24} C ${cx-20} ${top-2}, ${cx-70} ${top-6}, ${cx-82} ${top+12} C ${cx-60} ${top+36}, ${cx-20} ${top+36}, ${cx} ${top+24} Z" fill="var(--leaf)"/>`;
+  g+=`<path d="M${cx} ${top+24} C ${cx+20} ${top-2}, ${cx+70} ${top-6}, ${cx+82} ${top+12} C ${cx+60} ${top+36}, ${cx+20} ${top+36}, ${cx} ${top+24} Z" fill="var(--leaf)"/>`;
+  g+=`<path d="M${cx+4} ${top} L${cx+4} ${top+24}" stroke="var(--leaf)" stroke-width="5" stroke-linecap="round"/>`;
+  return `<svg class="fig" viewBox="0 0 280 360" width="250" role="img" aria-label="直立的尺旁邊有一株小芽">${g}</svg>`;
+}
+
+/* animated number line for 一、5 */
+function nl5(){
+  const X=v=>30+(v-1490)*3.5, Y=90;
+  let ticks='';
+  for(let v=1490;v<=1630;v+=10){const big=v%50===0;ticks+=`<line x1="${X(v)}" y1="${Y-(big?10:6)}" x2="${X(v)}" y2="${Y+(big?10:6)}" stroke="var(--ink)" stroke-width="${big?2:1.2}"/>`}
+  const lab=v=>`<text x="${X(v)}" y="${Y+30}" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">${v}</text>`;
+  const pt=(v,ok,dy,delay)=>`<g class="pt" style="transition-delay:${delay}s"><line x1="${X(v)}" y1="${Y}" x2="${X(v)}" y2="${Y-dy+8}" stroke="${ok?'var(--ok)':'var(--red)'}" stroke-width="1.2" stroke-dasharray="3 3"/><circle cx="${X(v)}" cy="${Y}" r="6" fill="${ok?'var(--ok)':'var(--red)'}"/><text x="${X(v)}" y="${Y-dy}" text-anchor="middle" font-size="15" font-weight="700" fill="${ok?'var(--ok)':'var(--red)'}">${v}${ok?' ✔':' ✗'}</text></g>`;
+  return `<div class="nl" data-nl data-step="4">
+  <div class="scroll"><svg class="fig k1 k2 k3 k4" viewBox="0 0 560 150" width="560" role="img" aria-label="數線：1500 到 1600 之間塗色，1501、1526、1596 在裡面，1614 在 1600 右邊">
+    <rect class="s3" x="${X(1500)}" y="${Y-14}" width="${X(1600)-X(1500)}" height="28" rx="4" fill="var(--ok-soft)"/>
+    <line class="s1line" x1="20" y1="${Y}" x2="535" y2="${Y}" stroke="var(--ink)" stroke-width="2.5"/>
+    <polygon class="s1" points="535,${Y-7} 548,${Y} 535,${Y+7}" fill="var(--ink)"/>
+    <text class="s1" x="520" y="${Y+30}" font-size="13" fill="var(--muted)" style="font-family:var(--f-body)">越右越大</text>
+    <g class="s2">${ticks}${lab(1500)}${lab(1550)}${lab(1600)}</g>
+    <g class="s3"><text x="${X(1550)}" y="${Y+52}" text-anchor="middle" font-size="14" fill="var(--ok)" style="font-family:var(--f-body)">1500 的右邊、1600 的左邊</text>
+      <path d="M${X(1500)+4} ${Y+44} h40" stroke="var(--ok)" stroke-width="2" marker-end="url(#nlar)"/><path d="M${X(1600)-4} ${Y+44} h-40" stroke="var(--ok)" stroke-width="2" marker-end="url(#nlar)"/></g>
+    <defs><marker id="nlar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--ok)"/></marker></defs>
+    <g class="s4">${pt(1501,true,40,0)}${pt(1526,true,40,.6)}${pt(1596,true,40,1.2)}${pt(1614,false,58,2)}</g>
+  </svg></div>
+  <p class="nlcap" aria-live="polite">${NLCAP[4]}</p>
+  <div class="nlbtns"><button type="button" class="btn primary" data-nl-act="play">▶ 播放畫數線</button><button type="button" class="btn" data-nl-act="next">一步一步跟著畫</button></div>
+</div>`;
+}
+const NLCAP=['',
+ '第 1 步：畫一條直線，右邊畫上箭頭。越往右邊，數越大。',
+ '第 2 步：每 10 畫一個小刻度，標出 1500、1550 和 1600。',
+ '第 3 步：1500 的右邊、1600 的左邊，就是中間這一段，把它塗上顏色。',
+ '第 4 步：把選項點上去。1501、1526、1596 都在塗色的地方；1614 跑到 1600 的右邊，不在裡面，所以<b>不可能</b>是它。'];
+function nlShow(box,n){
+  const svg=box.querySelector('svg');box.dataset.step=n;
+  [1,2,3,4].forEach(k=>svg.classList.toggle('k'+k,k<=n));
+  box.querySelector('.nlcap').innerHTML=n?NLCAP[n]:'拿出紙和筆，跟著一起畫。';
+  const nb=box.querySelector('[data-nl-act="next"]');nb.textContent=n>=4?'一步一步跟著畫':'下一步 →';
+}
+function nlAct(btn){
+  const box=btn.closest('[data-nl]');clearTimeout(box._t);
+  if(btn.dataset.nlAct==='next'){const n=+box.dataset.step;nlShow(box,n>=4?0:n+1);if(n>=4)box._t=setTimeout(()=>nlShow(box,1),350);return}
+  nlShow(box,0);let n=0;const tick=()=>{n++;nlShow(box,n);if(n<4)box._t=setTimeout(tick,n===3?2200:2600)};box._t=setTimeout(tick,400);
+}
+
+/* simple static number line for 一、5 */
+function nl5s(){
+  const X=v=>40+(v-1490)*3.4, Y=80;
+  const tick=v=>`<line x1="${X(v)}" y1="${Y-12}" x2="${X(v)}" y2="${Y+12}" stroke="var(--ink)" stroke-width="2.5"/><text x="${X(v)}" y="${Y+36}" text-anchor="middle" font-size="18" font-weight="700" fill="var(--ink)">${v}</text>`;
+  const pt=(v,ok)=>`<circle cx="${X(v)}" cy="${Y}" r="7" fill="${ok?'var(--ok)':'var(--red)'}"/><text x="${X(v)}" y="${Y-20}" text-anchor="middle" font-size="16" font-weight="700" fill="${ok?'var(--ok)':'var(--red)'}">${v}${ok?' ✔':' ✗'}</text>`;
+  return `<div class="scroll"><svg class="fig" viewBox="0 0 560 130" width="540" role="img" aria-label="數線上標出 1500 和 1600，1501、1526、1596 在中間，1614 在 1600 的右邊"><line x1="20" y1="${Y}" x2="535" y2="${Y}" stroke="var(--ink)" stroke-width="2.5"/><polygon points="535,${Y-7} 548,${Y} 535,${Y+7}" fill="var(--ink)"/>${tick(1500)}${tick(1600)}${pt(1501,true)}${pt(1526,true)}${pt(1596,true)}${pt(1614,false)}</svg></div><p>綠色的 1501、1526、1596 都在 1500 和 1600 中間；紅色的 1614 跑到 1600 的右邊了。</p>`;
+}
+/* place-value lab for 一、10 */
+function pvLab(){
+  return `<div class="pvlab" data-pvlab>
+  <p>把選項的數字放進百位試試看：</p>
+  <div class="pvpick">${[4,5,6,7].map((d,i)=>`<button type="button" class="btn" data-pv="${d}"><span class="k">${i+1}</span> ${d}</button>`).join('')}</div>
+  <table class="pv"><tr><th>千位</th><th>百位</th><th>十位</th><th>個位</th></tr><tr><td>2</td><td class="pvslot">▲</td><td>4</td><td>8</td></tr></table>
+  <div class="pvq" hidden>
+    <p>這個數是 <b class="pvnum"></b>，它比 2450 大還是小？</p>
+    <div class="pvpick"><button type="button" class="btn" data-cmp="lt">比 2450 小</button><button type="button" class="btn" data-cmp="gt">比 2450 大</button></div>
+    <p class="pvfb"></p>
+  </div>
+  <p class="pvsum" hidden>四個都試完了！只有 4 放進百位，2448 才會比 2301 大、又比 2450 小，所以答案是 <b>① 4</b>。</p>
+</div>`;
+}
+function pvAct(t){
+  const box=t.closest('[data-pvlab]');
+  if(t.dataset.pv){
+    const d=+t.dataset.pv;box.dataset.d=d;
+    box.querySelectorAll('[data-pv]').forEach(b=>b.classList.toggle('sel',b===t));
+    const slot=box.querySelector('.pvslot');slot.textContent=d;slot.classList.add('on');
+    box.querySelector('.pvnum').textContent=2000+d*100+48;
+    box.querySelector('.pvq').hidden=false;
+    const fb=box.querySelector('.pvfb');fb.textContent='';fb.className='pvfb';
+    return;
+  }
+  const d=+box.dataset.d,n=2000+d*100+48,right=n<2450?'lt':'gt',fb=box.querySelector('.pvfb');
+  if(t.dataset.cmp===right){
+    fb.className='pvfb ok';
+    fb.innerHTML=n<2450?`答對了！${n} 比 2450 小，也比 2301 大，所以 ▲ <b>可以</b>是 ${d}。`:`答對了！${n} 比 2450 大，所以 ▲ <b>不能</b>是 ${d}。`;
+    const b=box.querySelector(`[data-pv="${d}"]`);b.classList.add(n<2450?'good':'bad');b.dataset.done='1';
+    if(box.querySelectorAll('[data-pv][data-done]').length===4) box.querySelector('.pvsum').hidden=false;
+    else fb.innerHTML+='　再換下一個數字試試看。';
+  } else {
+    fb.className='pvfb no';
+    fb.innerHTML=d===4?'再想想：千位、百位都一樣，接著比十位：4 和 5 哪個大？':`再想想：千位都是 2，接著比百位：${d} 和 4 哪個大？`;
+  }
+}
+/* draw-an-angle lab for 二、(12) */
+const ANG={cols:7,rows:5,gap:50,ox:30,oy:30};
+const angPt=(i,j)=>[ANG.ox+i*ANG.gap,ANG.oy+j*ANG.gap];
+function angLab(){
+  let dots='';
+  for(let j=0;j<ANG.rows;j++)for(let i=0;i<ANG.cols;i++){const [x,y]=angPt(i,j);dots+=`<g class="adot" tabindex="0" role="button" aria-label="第 ${j+1} 排第 ${i+1} 個點" data-ai="${i}" data-aj="${j}"><circle cx="${x}" cy="${y}" r="20" fill="transparent"/><circle class="dv" cx="${x}" cy="${y}" r="5" fill="var(--muted)"/></g>`}
+  const W=ANG.ox*2+(ANG.cols-1)*ANG.gap,H=ANG.oy*2+(ANG.rows-1)*ANG.gap;
+  return `<div class="anglab" data-anglab data-pts="[]">
+  <p><b>換你畫畫看！</b>點下面的點，畫出一個角。</p>
+  <p class="angstep">① 先點一個點，當作角的<b>頂點</b>。</p>
+  <div class="scroll"><svg class="fig" viewBox="0 0 ${W} ${H}" width="${W}" role="group" aria-label="點點格子，用來畫角"><g class="angdraw"></g>${dots}</svg></div>
+  <div class="pvpick"><button type="button" class="btn" data-angreset="1">重畫</button></div>
+  <p class="muted" style="font-size:15px">畫完以後，也在考卷背面或計算紙上用尺畫一個角，標出頂點和邊。</p>
+</div>`;
+}
+function angDraw(box){
+  const pts=JSON.parse(box.dataset.pts),g=box.querySelector('.angdraw');let h='';
+  const P=k=>angPt(pts[k][0],pts[k][1]);
+  if(pts.length>=2){const [vx,vy]=P(0);[1,2].forEach(k=>{if(pts[k]){const [x,y]=P(k);h+=`<line x1="${vx}" y1="${vy}" x2="${x}" y2="${y}" stroke="var(--pen)" stroke-width="5" stroke-linecap="round"/><text x="${(vx+x)/2+8}" y="${(vy+y)/2-10}" font-size="16" font-weight="700" fill="var(--pen)" style="font-family:var(--f-body)">邊${k}</text>`}})}
+  if(pts.length>=1){const [vx,vy]=P(0);h+=`<circle cx="${vx}" cy="${vy}" r="11" fill="none" stroke="var(--red)" stroke-width="3"/><circle cx="${vx}" cy="${vy}" r="5" fill="var(--red)"/><text x="${vx}" y="${vy+30}" text-anchor="middle" font-size="16" font-weight="700" fill="var(--red)" style="font-family:var(--f-body)">頂點</text>`}
+  g.innerHTML=h;
+  const st=box.querySelector('.angstep');
+  st.className='angstep'+(pts.length===3?' done':'');
+  st.innerHTML=['① 先點一個點，當作角的<b>頂點</b>。','② 再點另一個點，從頂點畫出<b>第一條邊</b>。','③ 再點一個點，畫出<b>第二條邊</b>，兩條邊要張開喔。','你畫好一個角了！數數看：紅色的<b>頂點有 1 個</b>，藍色的<b>邊有 2 條</b>。'][pts.length];
+}
+function angAct(el){
+  const box=el.closest('[data-anglab]');
+  if(el.dataset.angreset){box.dataset.pts='[]';angDraw(box);return}
+  const pts=JSON.parse(box.dataset.pts);if(pts.length>=3)return;
+  const p=[+el.dataset.ai,+el.dataset.aj];
+  if(pts.some(q=>q[0]===p[0]&&q[1]===p[1]))return;
+  if(pts.length===2){
+    const [v,a]=pts,ax=a[0]-v[0],ay=a[1]-v[1],bx=p[0]-v[0],by=p[1]-v[1];
+    if(ax*by-ay*bx===0){const st=box.querySelector('.angstep');st.className='angstep warn';st.innerHTML=(ax*bx+ay*by>0?'兩條邊疊在一起了':'兩條邊變成一直線了')+'，換一個點，讓兩條邊張開。';return}
+  }
+  pts.push(p);box.dataset.pts=JSON.stringify(pts);angDraw(box);
+}
+document.addEventListener('keydown',e=>{const a=e.target.closest&&e.target.closest('.adot');if(a&&(e.key==='Enter'||e.key===' ')){e.preventDefault();angAct(a)}});
+/* ruler with counting hops for 二、(19) */
+function countRuler(a,b){
+  const p=7,x0=24,X=v=>x0+v*p,ry=96;
+  let g=`<rect x="${X(a)}" y="${ry-22}" width="${(b-a)*p}" height="20" fill="var(--shade)"/>`;
+  g+=`<rect x="${x0-8}" y="${ry}" width="${70*p+16}" height="36" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"/>`;
+  for(let i=0;i<=70;i++){const x=X(i),l=i%10===0?16:i%5===0?11:7;g+=`<line x1="${x}" y1="${ry}" x2="${x}" y2="${ry+l}" stroke="var(--ink)" stroke-width="${i%10?0.8:1.4}"/>`;if(i%10===0)g+=`<text x="${x}" y="${ry+31}" text-anchor="middle" font-size="12" fill="var(--ink)">${i/10}</text>`}
+  let v=a,big=0,small=0;
+  while(v<b){
+    if(v%10===0&&v+10<=b){big++;const x1=X(v),x2=X(v+10);g+=`<path d="M${x1} ${ry-24} Q${(x1+x2)/2} ${ry-62} ${x2} ${ry-24}" fill="none" stroke="var(--pen)" stroke-width="2.5"/><text x="${(x1+x2)/2}" y="${ry-50}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--pen)">10</text>`;v+=10}
+    else{small++;const x1=X(v),x2=X(v+1);g+=`<path d="M${x1} ${ry-24} Q${(x1+x2)/2} ${ry-38} ${x2} ${ry-24}" fill="none" stroke="var(--red)" stroke-width="1.8"/><text x="${(x1+x2)/2}" y="${ry-38}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--red)">${small}</text>`;v+=1}
+  }
+  return `<div class="scroll"><svg class="fig" viewBox="0 0 ${70*p+56} ${ry+42}" width="${70*p+56}" role="img" aria-label="在尺上一格一格數灰色長條：${big} 大格、${small} 小格">${g}</svg></div>`;
+}
+/* step-by-step vertical calculation for 五、 */
+const PL=['個位','十位','百位','千位','萬位'];
+const SV=[];
+const digs=(n,w)=>[...String(n).padStart(w,' ')].map(c=>c===' '?'':c);
+const snap=o=>JSON.parse(JSON.stringify(o));
+function frame(op,a,b,w){const f={top:digs(a,w),bot:digs(b,w),small:Array(w).fill(''),cross:Array(w).fill(false),res:Array(w).fill(''),hl:-1};f.bot[0]=op;return f}
+function addSteps(a,b,unit=''){
+  const A=String(a),B=String(b),w=Math.max(A.length,B.length+1,String(a+b).length),f=frame('＋',a,b,w);
+  const st=[{f:snap(f),t:'先把數字對齊：個位對個位、十位對十位。從<b>個位</b>開始加。'}];
+  let carry=0;const n=Math.max(A.length,B.length);
+  for(let c=0;c<n;c++){
+    const i=w-1-c,da=+(f.top[i]||0),hasB=c<B.length,db=hasB?+f.bot[i]:0,s=da+db+carry,last=c===n-1;let t=`<b>${PL[c]}</b>：`;
+    if(!hasB&&!carry){f.res[i]=String(da);t+=`下面沒有數字，${da} 直接寫下來。`}
+    else{t+=(hasB?`${da}＋${db}`:`${da}`)+(carry?`＋進位 ${carry}`:'')+`＝${s}`;
+      if(s>=10){f.res[i]=String(s%10);if(last){f.res[i-1]='1';t+=`，寫 ${s%10}，再把 1 寫在${PL[c+1]}。`;carry=0}else{f.small[i-1]='1';carry=1;t+=`，寫 ${s%10}，<b class="cr">進 1</b> 到${PL[c+1]}。`}}
+      else{f.res[i]=String(s);carry=0;t+=`，寫 ${s}。`}}
+    f.hl=i;st.push({f:snap(f),t});
+  }
+  f.hl=-1;st.push({f:snap(f),t:`算完了！答案是 <b>${a+b}${unit}</b>。`});return st;
+}
+function subSteps(a,b,unit=''){
+  const A=String(a),B=String(b),w=Math.max(A.length,B.length+1),f=frame('－',a,b,w),cur=f.top.map(x=>+x||0);
+  const mark=(j,v)=>{cur[j]=v;f.small[j]=String(v);f.cross[j]=true};
+  const st=[{f:snap(f),t:'先把數字對齊：個位對個位、十位對十位。從<b>個位</b>開始減。'}];
+  for(let c=0;c<A.length;c++){
+    const i=w-1-c,hasB=c<B.length,db=hasB?+f.bot[i]:0;
+    if(cur[i]<db){
+      let k=i-1;while(cur[k]===0)k--;
+      let t=`<b>${PL[c]}</b>：${cur[i]} 不夠減 ${db}，要向${PL[c+1]}借 1。`;
+      if(k<i-1)t+=`可是${PL[c+1]}是 0，沒辦法借，要再往前向${PL[w-1-k]}借。`;
+      t+=`${PL[w-1-k]} ${cur[k]} 變成 ${cur[k]-1}；`;mark(k,cur[k]-1);
+      for(let j=k+1;j<i;j++){t+=`${PL[w-1-j]} 0 先變成 10，再借 1 給右邊，剩下 9；`;mark(j,9)}
+      t+=`${PL[c]}變成 ${cur[i]+10}。`;mark(i,cur[i]+10);
+      f.hl=i;st.push({f:snap(f),t});
+    }
+    const r=cur[i]-db,lead=c===A.length-1&&c>0&&r===0;
+    let t=`<b>${PL[c]}</b>：`+(hasB?`${cur[i]}－${db}＝${r}`:`下面沒有數字，${cur[i]} 直接寫下來`);
+    if(lead)t+='，最前面的 0 不用寫。';else{f.res[i]=String(r);t+=hasB?`，寫 ${r}。`:'。'}
+    f.hl=i;st.push({f:snap(f),t});
+  }
+  f.hl=-1;st.push({f:snap(f),t:`算完了！答案是 <b>${a-b}${unit}</b>。`});return st;
+}
+function mulSteps(a,b){
+  const A=String(a),P=a*b,w=Math.max(A.length,2,String(P).length),f=frame('×',a,b,w);
+  const st=[{f:snap(f),t:`把 ${b} 對齊個位。用 ${b} 去乘上面的每一位，從<b>個位</b>開始。`}];
+  let carry=0;
+  for(let c=0;c<A.length;c++){
+    const i=w-1-c,da=+f.top[i],p=da*b,s=p+carry,last=c===A.length-1;
+    let t=`<b>${PL[c]}</b>：${da}×${b}＝${p}`+(carry?`，再加進位 ${carry}，${p}＋${carry}＝${s}`:'');
+    if(last&&s>=10){f.res[i]=String(s%10);f.res[i-1]=String(Math.floor(s/10));t+=`，前面沒有數字了，直接寫 ${s}。`;carry=0}
+    else if(s>=10){f.res[i]=String(s%10);carry=Math.floor(s/10);f.small[i-1]=String(carry);t+=`，寫 ${s%10}，<b class="cr">進 ${carry}</b> 到${PL[c+1]}。`}
+    else{f.res[i]=String(s);carry=0;t+=`，寫 ${s}。`}
+    f.hl=i;st.push({f:snap(f),t});
+  }
+  f.hl=-1;st.push({f:snap(f),t:`算完了！答案是 <b>${P}</b>。`});return st;
+}
+function frameHTML(f){
+  const w=f.top.length;let h='';
+  const cell=(i,cls,v)=>`<span class="${cls}${i===f.hl?' hl':''}">${v}</span>`;
+  for(let i=0;i<w;i++)h+=cell(i,'sm',f.small[i]);
+  for(let i=0;i<w;i++)h+=cell(i,f.cross[i]?'x':'',f.top[i]);
+  for(let i=0;i<w;i++)h+=cell(i,'ul',f.bot[i]);
+  for(let i=0;i<w;i++)h+=cell(i,'rs',f.res[i]);
+  return `<div class="svf" style="--c:${w}">${h}</div>`;
+}
+function unitHTML(o){
+  const hl=k=>o.hl===k?' hl':'';
+  return `<div class="ug">
+  <span></span><span class="sm${hl('cm')}">${o.carry||''}</span><span></span><span class="sm${hl('mm')}"></span><span></span>
+  <span></span><span class="${hl('cm')}">23</span><span class="u">公分</span><span class="${hl('mm')}">6</span><span class="u">毫米</span>
+  <span class="ul">＋</span><span class="ul${hl('cm')}">6</span><span class="ul u">公分</span><span class="ul${hl('mm')}">5</span><span class="ul u">毫米</span>
+  <span></span><span class="rs${hl('cm')}">${o.cm||''}</span><span class="u">${o.cm?'公分':''}</span><span class="rs${hl('mm')}">${o.mm||''}</span><span class="u">${o.mm?'毫米':''}</span></div>`;
+}
+function unitSteps(){
+  return [
+    {html:unitHTML({}),t:'公分對公分、毫米對毫米。先算<b>毫米</b>。'},
+    {html:unitHTML({hl:'mm',mm:'11'}),t:'<b>毫米</b>：6＋5＝11 毫米。'},
+    {html:unitHTML({hl:'mm',mm:'1',carry:'1'}),t:'11 毫米超過 10 毫米了。10 毫米＝1 公分，所以毫米寫 1，把 <b class="cr">1 公分進到公分</b>。'},
+    {html:unitHTML({hl:'cm',mm:'1',carry:'1',cm:'30'}),t:'<b>公分</b>：23＋6＋進位 1＝30 公分。'},
+    {html:unitHTML({mm:'1',carry:'1',cm:'30'}),t:'算完了！答案是 <b>30 公分 1 毫米</b>。'}
+  ];
+}
+function calcStepper(steps){
+  const id=SV.push(steps)-1;
+  return `<div class="stepper" data-sv="${id}" data-i="0">${svInner(id,0)}</div>`;
+}
+function svInner(id,i){
+  const s=SV[id][i],n=SV[id].length,last=i===n-1;
+  return `<div class="svbox">${s.html||frameHTML(s.f)}</div><p class="svtext" aria-live="polite">${s.t}</p>
+  <div class="svnav"><button type="button" class="btn" data-svgo="prev" ${i?'':'disabled'}>◀ 上一步</button><span class="svcount">第 ${i+1}／${n} 步</span><button type="button" class="btn primary" data-svgo="next">${last?'↺ 再看一次':'下一步 ▶'}</button></div>`;
+}
+function svGo(t){
+  const box=t.closest('.stepper'),id=+box.dataset.sv,n=SV[id].length;let i=+box.dataset.i;
+  if(t.dataset.svgo==='prev')i=Math.max(0,i-1);else i=i===n-1?0:i+1;
+  box.dataset.i=i;box.innerHTML=svInner(id,i);
+  const b=box.querySelector(`[data-svgo="${t.dataset.svgo}"]`);if(b&&!b.disabled)b.focus();
+}
+/* line-segment diagram for 六、(1) */
+function segDiagram(){
+  const x0=78,W=400,w1=Math.round(W*1696/3516),x1=x0+w1,x2=x0+W;
+  const brace=(a,b,y,up)=>{const m=(a+b)/2,d=up?-1:1,h=10*d;return `<path d="M${a} ${y} Q${a} ${y+h} ${a+10} ${y+h} L${m-10} ${y+h} Q${m} ${y+h} ${m} ${y+2*h} Q${m} ${y+h} ${m+10} ${y+h} L${b-10} ${y+h} Q${b} ${y+h} ${b} ${y}" fill="none" stroke="currentColor" stroke-width="2"/>`};
+  const tx=(x,y,t,c,sz)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="${sz||17}" font-weight="700" fill="${c}" style="font-family:var(--f-body)">${t}</text>`;
+  return `<div class="scroll"><svg class="fig" viewBox="0 0 520 236" width="500" role="img" aria-label="線段圖：上午 1696 張是一段；下午是同樣長的一段再加上多出來的 1820 張，下午合起來是問號張">
+  <text x="14" y="69" font-size="18" font-weight="700" fill="var(--ink)" style="font-family:var(--f-body)">上午</text>
+  <text x="14" y="149" font-size="18" font-weight="700" fill="var(--ink)" style="font-family:var(--f-body)">下午</text>
+  <g style="color:var(--pen)">${brace(x0,x1,44,true)}</g>${tx((x0+x1)/2,18,'1696 張','var(--pen)')}
+  <rect x="${x0}" y="50" width="${w1}" height="26" rx="3" fill="var(--pen-soft)" stroke="var(--pen)" stroke-width="2.5"/>
+  <line x1="${x1}" y1="76" x2="${x1}" y2="130" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="${x0}" y1="76" x2="${x0}" y2="130" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
+  ${tx((x0+x1)/2,108,'和上午一樣多','var(--muted)',14)}
+  <g style="color:var(--red)">${brace(x1,x2,124,true)}</g>${tx((x1+x2)/2,93,'比上午多 1820 張','var(--red)')}
+  <rect x="${x0}" y="130" width="${w1}" height="26" rx="3" fill="var(--pen-soft)" stroke="var(--pen)" stroke-width="2.5"/>
+  <rect x="${x1}" y="130" width="${W-w1}" height="26" rx="3" fill="var(--red-soft)" stroke="var(--red)" stroke-width="2.5"/>
+  <g style="color:var(--ink)">${brace(x0,x2,162,false)}</g>${tx((x0+x2)/2,212,'下午合起來：？張','var(--ink)',18)}
+</svg></div>`;
+}
+/* ---------- 二上國語期中評量 ---------- */
+const OPTL=['1','2','3','4'];const OPTA=['①','②','③','④'];
+const COLS=5;
+let RC=0;
+const sel=(a,...d)=>{const o=[a,...d];const k=(RC++)%o.length;const r=o.slice(k).concat(o.slice(0,k));return `[[s:${r.join('|')}]]`};
+const zy=t=>`<span class="zy">（${t}）</span>`;
+const ch=c=>`<span class="nb gc">${c}</span>`;
+const psg=(title,html)=>`<details class="passage"><summary>打開文章〈${title}〉</summary><div class="ptext">${html}</div></details>`;
+const P1='<h4>小陽臺的新鮮事</h4><p>上個星期，我家發生了一件既神奇又有趣的新鮮事。</p><p>那天清晨，我剛睜開眼睛，就聽到小陽臺傳來一陣陣「ㄐㄧ ㄐㄧ ㄓㄚ ㄓㄚ」的清脆叫聲。我好奇的躡手躡腳走過去，透過玻璃窗偷偷看，哇！原來是兩隻羽毛灰藍的小鳥，正在綠色的小盆栽旁築巢呢！</p><p>這兩隻小鳥非常勤勞，牠們用細長的嘴巴咬來枯枝和乾草，一趟又一趟的穿梭在天空與陽臺之間。沒過幾天，一個圓圓巧巧的鳥巢就誕生了。爸爸告訴我，這是「白頭翁」，牠們選擇在我們家築巢，代表我們家的環境溫暖又令人安心。</p><p>更讓人驚喜的是，這個星期天早上，我悄悄伸長脖子一看，鳥巢裡竟然多了三顆帶有淡粉色斑點的小鳥蛋！看到這個景象，我的心裡充滿了感動與期待。</p><p>現在，我每天放學回家後的第一件事，就是到陽臺探望這一家新朋友。這次的陽臺新鮮事，不僅讓我親眼觀察到自然的奧妙，也讓我學會了要溫柔的照顧與愛護小生命。</p>';
+const P2='<h4>搭船遊日月潭</h4><p>今年暑假，爸爸媽媽帶我和弟弟一起去南投的日月潭旅遊。這是我第一次來到日月潭，一路上我的心裡充滿了期待。</p><p>一抵達湖邊，我就看到微風吹拂著碧綠的湖水，水面上泛起一道道閃亮的光芒。我們興高采烈的登上藍白相間的遊艇，當船長發動引擎，船慢慢駛向湖心時，涼爽的湖風迎面吹來，撫摸著我們的臉龐，讓人舒服極了！</p><p>沿途上，船長熱心的介紹湖邊的景致。遠處的山頭籠罩著一層薄薄的白霧，看起來就像一幅美麗的山水畫。我們還停靠在碼頭，品嚐了香氣四溢的茶葉蛋，那鹹香濃郁的滋味，讓人忍不住一口接一口。</p><p>這趟日月潭之旅，我不僅欣賞到如詩如畫的風景，也品嚐了在地的美味料理。這一天充滿歡笑的旅遊，成為我暑假中最難忘的珍貴回憶。</p>';
+const PU=['，','、','。','：','！','？'];
+const pu=a=>`[[s:${PU.join('|')}]]`;
+const ord=()=>'[[s:①|②|③|④]]';
+
+const S=[
+ {id:'s1',name:'一、國字注音',note:'每答 1 分，共 40 分'},
+ {id:'s2',name:'二、改錯字',note:'每答 1 分，共 5 分'},
+ {id:'s3',name:'三、部首筆畫',note:'每答 1 分，共 15 分'},
+ {id:'s4',name:'四、標點符號',note:'每答 1 分，共 10 分'},
+ {id:'s5',name:'五、選擇題',note:'每題 1 分，共 6 分'},
+ {id:'s6',name:'六、查字典',note:'每答 2 分，共 4 分'},
+ {id:'s7',name:'七、照樣寫短語',note:'每答 1 分，共 7 分'},
+ {id:'s8',name:'八、造句',note:'每題 4 分，共 8 分'},
+ {id:'s9',name:'九、閱讀',note:'每題 1 分，共 5 分'}
+];
+const Q=[
+ {s:'s1',n:'第 1 段',type:'fill',stem:`今${ch('年')}（${sel('ㄋㄧㄢˊ','ㄋㄧㄢˇ','ㄌㄧㄢˊ')}）的${ch('中')}（${sel('ㄓㄨㄥ','ㄓㄨㄥˋ','ㄗㄨㄥ')}）秋${zy('ㄐㄧㄝˊ')}${sel('節','結','接')}，爸爸${zy('ㄉㄞˋ')}${sel('帶','戴','代')}著我們回${zy('ㄒㄧㄤ')}${sel('鄉','香','響')}下探${ch('望')}（${sel('ㄨㄤˋ','ㄨㄤˊ','ㄨㄤˇ')}）爺爺，爺爺住在新${ch('竹')}（${sel('ㄓㄨˊ','ㄓㄨˇ','ㄗㄨˊ')}）縣的新${ch('埔')}（${sel('ㄆㄨˇ','ㄅㄨˇ','ㄆㄨˊ')}）${zy('ㄓㄣˋ')}${sel('鎮','真','陣')}，我們${zy('ㄗㄨㄛˋ')}${sel('坐','座','做')}了好久的車才抵達。`,
+  ans:['ㄋㄧㄢˊ','ㄓㄨㄥ','節','帶','鄉','ㄨㄤˋ','ㄓㄨˊ','ㄆㄨˇ','鎮','坐'],
+  ex:'<p><b>中秋節</b>的「節」上面是竹字頭；「結」是打結，「接」是迎接。</p><p><b>帶</b>著我們：帶東西、帶人的「帶」。「戴」是戴帽子。</p><p>回<b>鄉</b>下：鄉下的「鄉」。「香」是香香的。</p><p>新埔<b>鎮</b>：鄉、鎮、市的「鎮」，金字旁。</p><p><b>坐</b>車：坐下來的「坐」。「座」是座位，「做」是做事。</p><p>注音：年 ㄋㄧㄢˊ、中 ㄓㄨㄥ、望 ㄨㄤˋ、竹 ㄓㄨˊ、埔 ㄆㄨˇ。</p>'},
+ {s:'s1',n:'第 2 段',type:'fill',stem:`一下車，就看到${ch('巷')}（${sel('ㄒㄧㄤˋ','ㄒㄧㄤˇ','ㄏㄤˋ')}）口的小${zy('ㄏㄨㄤˊ')}${sel('黃','紅','皇')}${zy('ㄇㄠ')}${sel('貓','毛','苗')}翹著尾巴迎${zy('ㄐㄧㄝ')}${sel('接','街','節')}我們，${ch('可')}（${sel('ㄎㄜˇ','ㄎㄜˋ','ㄍㄜˇ')}）${zy('ㄞˋ')}${sel('愛','受','艾')}的${ch('模')}（${sel('ㄇㄛˊ','ㄇㄨˊ','ㄇㄛˇ')}）${zy('ㄧㄤˋ')}${sel('樣','洋','羊')}讓我忍不住想${zy('ㄩㄥˋ')}${sel('用','永','勇')}${zy('ㄌㄧˋ')}${sel('力','立','利')}抱抱牠。`,
+  ans:['ㄒㄧㄤˋ','黃','貓','接','ㄎㄜˇ','愛','ㄇㄛˊ','樣','用','力'],
+  ex:'<p>小<b>黃貓</b>：黃色的貓。貓是動物，所以是「豸」字旁。</p><p>迎<b>接</b>：用手去接，是提手旁。</p><p>可<b>愛</b>：「愛」中間有一個「心」，「受」沒有。</p><p>模<b>樣</b>：樣子的「樣」，木字旁。</p><p><b>用力</b>：用很大的力氣。</p><p>注音：巷 ㄒㄧㄤˋ、可 ㄎㄜˇ、模 ㄇㄛˊ（模樣的模，不是 ㄇㄨˊ）。</p>'},
+ {s:'s1',n:'第 3 段',type:'fill',stem:`忽然，${ch('矮')}（${sel('ㄞˇ','ㄞˋ','ㄚˇ')}）${ch('牆')}（${sel('ㄑㄧㄤˊ','ㄑㄧㄤˇ','ㄐㄧㄤˊ')}）內傳來${zy('ㄐㄧㄠˇ')}${sel('腳','叫','角')}${zy('ㄅㄨˋ')}${sel('步','部','不')}${ch('聲')}（${sel('ㄕㄥ','ㄕㄥˊ','ㄙㄥ')}），一張微笑的${zy('ㄌㄧㄢˇ')}${sel('臉','險','檢')}探了出來，${zy('ㄩㄢˊ')}${sel('原','元','園')}來是爺爺啊！`,
+  ans:['ㄞˇ','ㄑㄧㄤˊ','腳','步','ㄕㄥ','臉','原'],
+  ex:'<p><b>腳步</b>聲：走路時腳發出的聲音。「叫」是叫聲，「角」是牛角。</p><p>微笑的<b>臉</b>：臉是身體，所以是「月（肉）」字旁。</p><p><b>原</b>來：本來就是這樣。「元」是元旦，「園」是花園。</p><p>注音：矮 ㄞˇ、牆 ㄑㄧㄤˊ、聲 ㄕㄥ。</p>'},
+ {s:'s1',n:'第 4 段',type:'fill',stem:`他一大早就在家${zy('ㄉㄥˇ')}${sel('等','燈','登')}著我們。走${zy('ㄐㄧㄣˋ')}${sel('進','近','今')}庭院，我看到好多${ch('柿')}（${sel('ㄕˋ','ㄕˇ','ㄙˋ')}）${ch('餅')}（${sel('ㄅㄧㄥˇ','ㄅㄧㄥ','ㄆㄧㄥˇ')}），在陽光下散發著香${zy('ㄊㄧㄢˊ')}${sel('甜','田','天')}的${zy('ㄑㄧˋ')}${sel('氣','汽','器')}味。`,
+  ans:['等','進','ㄕˋ','ㄅㄧㄥˇ','甜','氣'],
+  ex:'<p><b>等</b>著我們：等人的「等」，竹字頭。「燈」是電燈。</p><p>走<b>進</b>庭院：往裡面走。「近」是很近、不遠。</p><p>香<b>甜</b>：甜甜的味道，左邊是「舌」。</p><p><b>氣</b>味：香氣、空氣的「氣」。</p><p>注音：柿 ㄕˋ、餅 ㄅㄧㄥˇ。</p>'},
+ {s:'s1',n:'第 5 段',type:'fill',stem:`${zy('ㄨ')}${sel('屋','物','烏')}內似乎有人在聊天，我打開門一看，${ch('叔')}（${sel('ㄕㄨˊ','ㄕㄨ','ㄕㄨˇ')}）叔一家人也回來了，我們一起度過了${zy('ㄖㄜˋ')}${sel('熱','日','惹')}${zy('ㄋㄠˋ')}${sel('鬧','腦','惱')}又愉快的${ch('假')}（${sel('ㄐㄧㄚˋ','ㄐㄧㄚˇ','ㄐㄧㄚ')}）期。`,
+  ans:['屋','ㄕㄨˊ','熱','鬧','ㄐㄧㄚˋ'],
+  ex:'<p><b>屋</b>內：房屋裡面。</p><p><b>熱鬧</b>：人很多、很開心的樣子。「熱」下面有四點，「鬧」外面是「門」。</p><p>注音：叔 ㄕㄨˊ、假期的假 ㄐㄧㄚˋ（放假），不是真假的 ㄐㄧㄚˇ。</p>'},
+ {s:'s1',n:'1',type:'choice',one:1,stem:'剛下車時，主角最先看到什麼在巷口迎接他們？',opts:['翹著尾巴的小黃貓','搖著尾巴的小黃狗','滿樹紅紅的柿子'],ans:0,
+  ex:'<p>文章說「一下車，就看到巷口的小黃貓翹著尾巴迎接我們」，所以是<b>翹著尾巴的小黃貓</b>。</p>'},
+ {s:'s1',n:'2',type:'choice',one:1,stem:'文章中「他一大早就在家等著我們」，以及從矮牆探出微笑的臉，可以推測出爺爺當時的心情是怎樣的？',opts:['擔心大家坐車太累而感到焦慮','非常期待與家人團聚','因為家裡太吵而感到無奈'],ans:1,
+  ex:'<p>爺爺「一大早」就在等，又笑著探出頭來，表示他很想快點見到家人，心情是<b>非常期待與家人團聚</b>。</p>'},
+
+ {s:'s2',n:'改錯字',type:'fill',stem:'句子裡有 5 個錯字：<p class="wrongs">「胡老<u>帥</u>提著一個裝了<u>園</u>形磁鐵的小竹<u>藍</u>，<u>住</u>正在<u>俳</u>隊結帳的人群走去。」</p><span class="sub">帥 → （[[s:師|獅|帥]]）　園 → （[[s:圓|原|遠]]）　藍 → （[[s:籃|藍|蘭]]）</span><span class="sub">住 → （[[s:往|主|注]]）　俳 → （[[s:排|拜|牌]]）</span>',ans:['師','圓','籃','往','排'],
+  ex:'<p><b>老師</b>：老師的「師」，左邊有一撇。「帥」是很帥。</p><p><b>圓形</b>：圓圓的形狀。「園」是花園。</p><p><b>竹籃</b>：用竹子編的籃子，竹字頭。「藍」是藍色，草字頭。</p><p><b>往</b>前走：「往」是雙人旁，「住」是單人旁。</p><p><b>排隊</b>：用手排好，所以是提手旁。</p>'},
+
+ {s:'s3',n:'1. 全',type:'fill',stem:`${ch('全')}：（[[s:入|人|王]]）部（[[s]]）畫`,ans:['入','6'],ex:'<p>「全」上面是「入」，所以是<b>入部</b>，一共 <b>6</b> 畫。</p><p>造詞參考：全部、全家、安全、全班。</p>'},
+ {s:'s3',n:'2. 客',type:'fill',stem:`${ch('客')}：（[[s:口|宀|夂]]）部（[[s]]）畫`,ans:['宀','9'],ex:'<p>「客」上面是寶蓋頭，<b>宀部</b>，一共 <b>9</b> 畫。</p><p>造詞參考：客人、客廳、做客、請客。</p>'},
+ {s:'s3',n:'3. 捕',type:'fill',stem:`${ch('捕')}：（[[s:用|甫|手]]）部（[[s]]）畫`,ans:['手','10'],ex:'<p>「捕」左邊是提手旁，提手旁屬於<b>手部</b>，一共 <b>10</b> 畫。</p><p>造詞參考：捕魚、捕捉、捕手。</p>'},
+ {s:'s3',n:'4. 位',type:'fill',stem:`${ch('位')}：（[[s:立|人|一]]）部（[[s]]）畫`,ans:['人','7'],ex:'<p>「位」左邊是單人旁，單人旁屬於<b>人部</b>，一共 <b>7</b> 畫。</p><p>造詞參考：座位、位子、各位、單位。</p>'},
+ {s:'s3',n:'5. 夾',type:'fill',stem:`${ch('夾')}：（[[s:人|一|大]]）部（[[s]]）畫`,ans:['大','7'],ex:'<p>「夾」是<b>大部</b>，一共 <b>7</b> 畫。</p><p>造詞參考：夾子、夾菜、髮夾、文件夾。</p>'},
+ {s:'s3',n:'造詞',type:'open',stem:'用 全、客、捕、位、夾 各造一個詞。',ref:'全部、客人、捕魚、座位、夾子',ex:'<p>造詞要用到這個字，而且是常用的語詞，例如：<b>全部、客人、捕魚、座位、夾子</b>。</p><p>這題請老師批改。</p>'},
+
+ {s:'s4',n:'1.',type:'fill',stem:`鐘聲響起${pu()}我打開書包，拿出課本${pu()}鉛筆盒${pu()}書架和墊板，準備上課${pu()}`,ans:['，','、','、','。'],
+  ex:'<p>「鐘聲響起」話還沒說完，用<b>逗號 ，</b>。</p><p>課本、鉛筆盒、書架是同一類的東西排在一起，中間用<b>頓號 、</b>。</p><p>一句話說完了，用<b>句號 。</b></p>'},
+ {s:'s4',n:'2.',type:'fill',stem:`老師站在講臺上講課${pu()}大家都很認真的聽講，並且把重點寫在課本上${pu()}`,ans:['，','。'],ex:'<p>話還沒說完用<b>逗號 ，</b>，說完了用<b>句號 。</b></p>'},
+ {s:'s4',n:'3.',type:'fill',stem:`下課前${pu()}老師笑著說${pu()}「今天大家都非常認真${pu()}你們真是太棒啦${pu()}」`,ans:['，','：','，','！'],
+  ex:'<p>「老師笑著說」後面要說出說話的內容，用<b>冒號 ：</b>。</p><p>「太棒啦」是很高興、很讚美的語氣，用<b>驚嘆號 ！</b></p>'},
+
+ {s:'s5',n:'1',type:'choice',one:1,stem:'新學年新希望中，主角因為什麼而特別想快點上課？',opts:['看到漂亮的風景','吃到可口的點心','聞到淡淡的書香'],ans:2,ex:'<p>課文中主角聞到淡淡的書香，所以特別想快點上課。答案是 <b>③</b>。</p>'},
+ {s:'s5',n:'2',type:'choice',one:1,stem:'一起做早餐中，媽媽說：「這張笑臉就像是我們開心的臉！」這句話表示什麼意思？',opts:['和家人一起做早餐很快樂','吐司上的笑臉畫得很好笑','做早餐非常的辛苦'],ans:0,ex:'<p>「開心的臉」表示大家很快樂，所以是<b>和家人一起做早餐很快樂</b>。</p>'},
+ {s:'s5',n:'3',type:'choice',one:1,stem:'「花園裡開滿了紅的、黃的、藍的和白的小花」，句子中使用頓號「、」的目的是什麼？',opts:['提出疑問並吸引注意','表示整句話已經結束','分隔同類的顏色語詞'],ans:2,ex:'<p>紅的、黃的、藍的都是顏色，是同一類的語詞，中間用頓號<b>分隔</b>開來。</p>'},
+ {s:'s5',n:'4',type:'choice',one:1,stem:'人們買柿餅送給親朋好友，是借用了「柿」字的諧音來表達什麼祝福？',opts:['心想「事」成、事事如意','平平安安','大「吉」大利'],ans:0,ex:'<p>「柿」和「事」的讀音很像，所以送柿子表示<b>事事如意、心想事成</b>。</p>'},
+ {s:'s5',n:'5',type:'choice',one:1,stem:'運動會中，兩人三腳的比賽，最強調選手之間的什麼精神？',opts:['聲音宏亮與加油氣勢','互相配合與同心協力的精神','個人獨特的比賽技巧'],ans:1,ex:'<p>兩個人的腳綁在一起，要一起出腳才走得快，所以最重要的是<b>互相配合、同心協力</b>。</p>'},
+ {s:'s5',n:'6',type:'choice',one:1,stem:'坐竹籃船中，作者有什麼樣的心情與收穫？',opts:['覺得竹籃船太可怕，不敢再搭乘','享受了快樂的家庭時光，也更認識媽媽的家鄉','覺得路途遙遠，以後不想再來'],ans:1,ex:'<p>作者和家人一起坐竹籃船，玩得很開心，也更認識媽媽的家鄉。答案是 <b>②</b>。</p>'},
+
+ {s:'s6',n:'1.',type:'fill',stem:'寫出「注音查字法」查「煎」的正確順序：<ol class="steps2"><li>① 翻到「煎」的頁次，就可以找到「煎」字</li><li>② 翻到「ㄐ」的頁次</li><li>③ 翻到注音索引目次</li><li>④ 在「煎」音裡，找到「煎」的頁次</li></ol>'+`<span class="sub">答：（${ord()}）→（${ord()}）→（${ord()}）→（${ord()}）</span>`,ans:['③','②','④','①'],
+  ex:'<p>注音查字法：先找<b>注音索引</b> ③，再找第一個注音符號「ㄐ」②，再找「煎」這個音 ④，最後翻到那一頁找到字 ①。</p><p>順序：<b>③ → ② → ④ → ①</b></p>'},
+ {s:'s6',n:'2.',type:'fill',stem:'寫出「部首查字法」查「煎」的正確順序：<ol class="steps2"><li>① 翻到部首索引</li><li>② 翻到「火」部的頁次</li><li>③ 扣掉部首的筆畫數是 9 畫，在「火」部 9 畫的地方可以找到「煎」字</li><li>④ 在部首索引的四畫找到「火」部</li></ol>'+`<span class="sub">答：（${ord()}）→（${ord()}）→（${ord()}）→（${ord()}）</span>`,ans:['①','④','②','③'],
+  ex:'<p>部首查字法：先翻到<b>部首索引</b> ①，「火（灬）」部是 4 畫，在四畫找到火部 ④，翻到火部 ②，「煎」扣掉部首還有 9 畫，在 9 畫找到字 ③。</p><p>順序：<b>① → ④ → ② → ③</b></p>'},
+
+ {s:'s7',n:'1.',type:'open',stem:'照樣寫短語：（聞）著（淡淡的）（書香） → （　）著（　）（　）',ref:'看著（藍藍的）（天空）',ex:'<p>格式是「做什麼＋著＋怎麼樣的＋什麼東西」。</p><p>例如：（<b>看</b>）著（<b>藍藍的</b>）（<b>天空</b>）、（<b>吃</b>）著（<b>甜甜的</b>）（<b>蛋糕</b>）。</p><p>這題請老師批改。</p>'},
+ {s:'s7',n:'2.',type:'open',stem:'照樣寫短語：（做）（早餐） → （　）（　）',ref:'（吃）（午餐）',ex:'<p>格式是「動作＋東西」。例如：（<b>吃</b>）（<b>午餐</b>）、（<b>寫</b>）（<b>功課</b>）。</p><p>這題請老師批改。</p>'},
+ {s:'s7',n:'3.',type:'open',stem:'照樣寫短語：（一顆一顆）的（柿子） → （　）的（　）',ref:'（一朵一朵）的（花）',ex:'<p>前面要用「一＋量詞＋一＋量詞」，量詞要配合後面的東西。</p><p>例如：（<b>一朵一朵</b>）的（<b>花</b>）、（<b>一隻一隻</b>）的（<b>小鳥</b>）。</p><p>這題請老師批改。</p>'},
+
+ {s:'s8',n:'1.',type:'open',stem:'造句（要加上適當的標點符號）：……正在……',ref:'媽媽正在廚房裡煮飯。',ex:'<p>例如：<b>媽媽正在廚房裡煮飯。</b>／<b>弟弟正在客廳看書。</b></p><p>句子要說出「誰」正在「做什麼」，最後別忘了句號。</p><p>這題請老師批改。</p>'},
+ {s:'s8',n:'2.',type:'open',stem:'造句（要加上適當的標點符號）：一邊……一邊……',ref:'哥哥一邊聽音樂，一邊寫功課。',ex:'<p>例如：<b>哥哥一邊聽音樂，一邊寫功課。</b></p><p>「一邊」後面要接兩個<b>同時在做</b>的動作，中間用逗號，最後用句號。</p><p>這題請老師批改。</p>'},
+
+ {s:'s9',n:'第一篇 1',type:'choice',one:1,stem:'根據爸爸的說明，白頭翁選擇在作者家的陽臺築巢，暗示作者家的環境具備什麼特點？',fig:psg('小陽臺的新鮮事',P1),opts:['環境充滿溫暖並且讓人感到安心','陽臺上擺放了許多可以讓鳥類採食的果實','附近沒有其他大樹，小鳥無處可去'],ans:0,
+  ex:'<p>爸爸說，白頭翁在我們家築巢，代表家裡的環境<b>溫暖又令人安心</b>。</p>'},
+ {s:'s9',n:'第一篇 2',type:'choice',one:1,stem:'為什麼作者看到鳥巢裡多了三顆小鳥蛋時，心裡會充滿「感動與期待」？',fig:psg('小陽臺的新鮮事',P1),opts:['因為作者可以吃到好吃的煎鳥蛋','因為作者看到新生命即將誕生','因為作者可以把鳥蛋拿去送給好朋友'],ans:1,
+  ex:'<p>鳥蛋會孵出小鳥，作者期待<b>新生命</b>誕生，所以覺得感動又期待。文章最後也說要愛護小生命。</p>'},
+ {s:'s9',n:'第二篇 1',type:'choice',one:1,stem:'作者「一路上心裡充滿了期待」，並在看見閃亮湖面時「興高采烈的登上遊艇」，這些描寫主要展現出作者當時怎樣的心情？',fig:psg('搭船遊日月潭',P2),opts:['因路途遙遠而感到有些疲倦與無奈','對第一次的新奇旅程感到無比興奮與雀躍','擔心湖水太深而感到焦慮與害怕'],ans:1,
+  ex:'<p>「期待」「興高采烈」都是很開心的意思，又是第一次來，所以作者覺得<b>興奮、雀躍</b>。</p>'},
+ {s:'s9',n:'第二篇 2',type:'choice',one:1,stem:'文中寫到「微風吹拂著碧綠的湖水，水面上泛起一道道閃亮的光芒」，從「閃亮的光芒」可以推測當時的天氣狀況如何？',fig:psg('搭船遊日月潭',P2),opts:['天空陰沉','陽光普照','風浪很大'],ans:1,
+  ex:'<p>水面會閃閃發亮，是因為有<b>陽光</b>照在上面。而且只是「微風」，風浪不大。</p>'},
+ {s:'s9',n:'第二篇 3',type:'choice',one:1,stem:'綜合整篇文章，作者寫這篇遊記，最主要想表達的主題是什麼？',fig:psg('搭船遊日月潭',P2),opts:['詳細介紹日月潭遊艇的製造過程與歷史','抱怨暑假期間熱門景點人太多','記錄與家人共度的歡樂時光，以及這趟旅程帶給自己的美好珍貴回憶'],ans:2,
+  ex:'<p>最後一段說，這一天充滿歡笑，是暑假<b>最難忘的珍貴回憶</b>。文章沒有講遊艇怎麼做，也沒有抱怨人多。</p>'}
+];
+Q.forEach((q,i)=>q.id='q'+i);
+const CORNERS=[];
+const LINE={x0:24,px:4,max:100,target:0};
+const MONEY=[{v:1000,ic:'k'},{v:100,ic:'h'},{v:10,ic:'t'},{v:1,ic:'o'}];
+
+
+
+/* ---------- state ---------- */
+function blankState(){return {mark:{},sec:{},cur:0,view:'review',v:{},test:{round:1,ids:null,done:false,res:{}},bpmf:state.bpmf}}
+if(!state.mark){state=Object.assign(blankState(),{bpmf:state.bpmf!==false})}
+const secQs=sid=>Q.filter(q=>q.s===sid);
+const byId=id=>Q.find(q=>q.id===id);
+const allDone=()=>S.every(s=>state.sec[s.id]==='done');
+
+/* ---------- review rendering (answers shown in red after marking) ---------- */
+function slots(src,q,start,show){
+  let i=start;
+  const html=src.replace(/\[\[(.*?)\]\]/g,(m,spec)=>{const idx=i++;const a=show?q.ans[idx]:'';return `<span class="slot${spec==='box'?' sbox':spec==='t'?' wide':''}">${a}</span>`});
+  return {html,next:i};
+}
+function cornersStatic(show){
+  return `<div class="figrow">${CORNERS.map((f,fi)=>`<svg viewBox="${f.vb}" width="${f.w}" class="fig" role="img" aria-label="圖 ${fi+1}"><path d="${f.path}" fill="${f.fill||'none'}" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>${f.deco||''}${show?f.good.map(pi=>{const p=f.pts[pi];return `<ellipse cx="${p[0]}" cy="${p[1]}" rx="11" ry="10" fill="none" stroke="var(--red)" stroke-width="2.5" transform="rotate(-12 ${p[0]} ${p[1]})"/>`}).join(''):''}${show&&!f.good.length?'<text x="62" y="104" text-anchor="middle" font-size="11" fill="var(--red)" style="font-family:var(--f-body)">沒有角</text>':''}</svg>`).join('')}</div>`;
+}
+function lineStatic(show){
+  const W=LINE.x0*2+LINE.max*LINE.px;
+  return `<div class="scroll"><svg class="fig" viewBox="0 0 ${W} 100" width="${W}" role="img" aria-label="尺">${rulerH(LINE.x0,LINE.max,48,LINE.px)}${show?`<line x1="${LINE.x0}" y1="34" x2="${LINE.x0+LINE.target*LINE.px}" y2="34" stroke="var(--red)" stroke-width="3.5" stroke-linecap="round"/>`:''}</svg></div>`;
+}
+function reviewBody(q,show){
+  if(q.type==='choice'){
+    return `<p class="stem"><span class="qn">${q.n}.</span>${q.stem}</p>${q.fig||''}<div class="opts${q.one?' one':''}">${q.opts.map((o,i)=>`<div class="opt ro${show&&i===q.ans?' ansopt':''}"><span class="k">${OPTL[i]}</span><span>${o}</span></div>`).join('')}</div>${show?`<p class="ansline">正確答案：<b>${OPTA[q.ans]}</b></p>`:''}`;
+  }
+  if(q.type==='fill'){
+    const a=slots(q.stem,q,0,show);const after=q.after?slots(q.after,q,a.next,show).html:'';
+    return `<div class="stem"><span class="qn">${q.n}</span>${a.html}</div>${q.fig||''}${after}`;
+  }
+  if(q.type==='corners') return `<p class="stem"><span class="qn">${q.n}</span>${q.rstem}</p>${cornersStatic(show)}`;
+  if(q.type==='line') return `<p class="stem"><span class="qn">${q.n}</span>${q.rstem}</p>${lineStatic(show)}`;
+  if(q.type==='money') return `<p class="stem"><span class="qn">${q.n}</span>${q.stem}</p>${show?`<p class="ansline">正確畫法：${q.draw}</p>`:''}`;
+  if(q.type==='open') return `<p class="stem"><span class="qn">${q.n}</span>${q.stem}</p>${show?`<p class="ansline">參考答案：<b class="refa">${q.ref}</b></p><p class="muted" style="font-size:14px">這題的答案不只一種，請老師批改。</p>`:''}`;
+  if(q.type==='word') return `<p class="stem"><span class="qn">${q.n}</span>${q.stem}</p>${q.fig||''}<p class="ansline">橫式：<span class="slot wide">${show?q.f:''}</span>　答：<span class="slot">${show?q.ans:''}</span> ${q.unit}</p>`;
+}
+function reviewCard(q,locked){
+  const m=state.mark[q.id];
+  const exOpen=m==='wrong';
+  return `<article class="q${m?' marked '+m:''}" id="${q.id}">
+    <span class="mark" aria-hidden="true">${m==='right'?'○':m==='wrong'?'✗':''}</span>
+    ${reviewBody(q,!!m)}
+    ${locked?'':`<div class="selfmark" role="group" aria-label="這題你寫對還是寫錯">
+      <span class="ask">考卷上這題：</span>
+      <button type="button" class="mk ok${m==='right'?' on':''}" data-mark="right" data-q="${q.id}" aria-pressed="${m==='right'}">○ 我寫對了</button>
+      <button type="button" class="mk no${m==='wrong'?' on':''}" data-mark="wrong" data-q="${q.id}" aria-pressed="${m==='wrong'}">✗ 我寫錯了</button>
+    </div>`}
+    ${m?`<details class="explain"${exOpen?' open':''}><summary>${m==='wrong'?'詳解（看懂後在考卷上訂正）':'看說明'}</summary>${q.ex}</details>`:''}
+  </article>`;
+}
+
+/* ---------- stepper ---------- */
+function stepper(){
+  const items=S.map((s,i)=>{const st=state.sec[s.id];const qs=secQs(s.id);const marked=qs.filter(q=>state.mark[q.id]).length;
+    const isCur=state.view==='review'&&state.cur===i;
+    const reach=st==='done'||i<=firstOpen();
+    return `<button type="button" class="step${st==='done'?' done':''}${isCur?' cur':''}" data-step="${i}" ${reach?'':'disabled'} aria-current="${isCur}"><b>${s.name.split('、')[0]}</b><small>${st==='done'?'✔ 完成':st==='teacher'?'等老師':marked+'/'+qs.length}</small></button>`}).join('');
+  const t=`<button type="button" class="step test${state.view!=='review'?' cur':''}" data-step="test" ${allDone()?'':'disabled'}><b>錯題測驗</b><small>${allDone()?(state.test.done&&!pendingIds().length?'✔ 完成':'可以做了'):'最後解鎖'}</small></button>`;
+  $('#steps').style.setProperty('--cols',COLS);$('#steps').innerHTML=items+t;
+}
+function firstOpen(){const i=S.findIndex(s=>state.sec[s.id]!=='done');return i<0?S.length:i}
+
+/* ---------- views ---------- */
+const doneLabel=(left,wrong)=>(!left&&!wrong)?'全部寫對！直接做下一大題 →':'這一大題檢討好了';
+function renderReview(){
+  const s=S[state.cur];const st=state.sec[s.id];const qs=secQs(s.id);
+  const locked=st==='done';
+  if(st==='teacher'){
+    $('#main').innerHTML=`<section class="teacher" aria-live="polite">
+      <div class="stamp">${s.name.split('、')[0]}</div>
+      <h2>${s.name.split('、')[1]} 檢討好了！</h2>
+      <p class="big">請把考卷拿給老師，<br>先批改這一大題。</p>
+      <p class="muted">老師看過以後，請老師按住下面的按鈕。</p>
+      <button type="button" class="hold" id="holdBtn"><span class="fill"></span><span class="lbl">老師確認：按住 2 秒</span></button>
+      <button type="button" class="btn" id="backBtn">回去再看一下</button>
+    </section>`;
+    bindHold(s);
+    return;
+  }
+  const left=qs.filter(q=>!state.mark[q.id]).length;
+  const wrong=qs.filter(q=>state.mark[q.id]==='wrong').length;
+  $('#main').innerHTML=`<section class="sec">
+    <div class="sec-h"><h2>${s.name}</h2><small>${s.note}・共 ${qs.length} 題</small></div>
+    ${locked?'<p class="muted">這一大題已經檢討完成，老師也確認過了。</p>':`<p class="muted">對照考卷，每一題點「我寫對了」或「我寫錯了」。寫錯的題目會出現詳解，看懂後在考卷上用訂正筆改好。</p><div class="allright"><button type="button" class="mk ok big2" id="allRight">○ 這一大題我全部寫對了</button><span class="muted">按了以後，每一題都會標成寫對，並顯示正確答案讓你再對一次。對完就可以直接做下一大題。</span></div>`}
+    <div class="cards">${qs.map(q=>reviewCard(q,locked)).join('')}</div>
+    ${locked?`<div class="finish"><button type="button" class="btn primary" data-goto="${firstOpen()<S.length?firstOpen():'test'}">${firstOpen()<S.length?'到現在要檢討的大題':'去做錯題測驗'}</button></div>`
+    :`<div class="finish"><p id="leftMsg">${left?`還有 <b>${left}</b> 題還沒點喔。`:wrong?`有 ${wrong} 題寫錯，都在考卷上訂正好了嗎？`:'這一大題全部寫對，太棒了！不用給老師批改，可以直接做下一大題。'}</p><button type="button" class="btn primary big" id="secDone" ${left?'disabled':''}>${doneLabel(left,wrong)}</button></div>`}
+  </section>`;
+}
+function pendingIds(){
+  if(state.test.ids) return state.test.ids;
+  return Q.filter(q=>state.mark[q.id]==='wrong'&&q.type!=='open').map(q=>q.id);
+}
+function renderTest(){
+  const ids=pendingIds();
+  if(!ids.length){
+    $('#main').innerHTML=`<section class="teacher"><div class="stamp">○</div><h2>${state.test.round>1?'錯題全部都會了！':(Q.some(q=>state.mark[q.id]==='wrong')?'沒有要再測驗的題目':'考卷全部寫對！')}</h2><p class="big">${state.test.round>1?'你把寫錯的題目都學會了，<br>給自己拍拍手！':(Q.some(q=>state.mark[q.id]==='wrong')?'寫錯的題目都要自己寫答案，<br>已經請老師批改了。':'沒有錯題，不用測驗。<br>給自己拍拍手！')}</p><p class="muted">可以把結果給老師看。</p></section>`;
+    return;
+  }
+  const done=state.test.done;
+  const res=state.test.res;
+  const right=done?ids.filter(id=>res[id]).length:0;
+  $('#main').innerHTML=`<section class="sec">
+    <div class="sec-h"><h2>錯題測驗${state.test.round>1?` 第 ${state.test.round} 次`:''}</h2><small>共 ${ids.length} 題</small></div>
+    ${done?`<div class="result"><b>${right}</b> ／ ${ids.length} 題答對 ${right===ids.length?'<span>全部答對了！</span>':'<span>錯的題目看一下詳解，再挑戰一次。</span>'}</div>`
+          :'<p class="muted">這些是你考卷上寫錯的題目。不要看考卷，自己再做一遍，全部寫完再按「交卷」。</p>'}
+    <fieldset id="testFs" ${done?'disabled':''}><legend class="sr">錯題</legend><div class="cards">${ids.map(id=>cardHTML(byId(id))).join('')}</div></fieldset>
+    <div class="finish">${done?(right===ids.length?`<button type="button" class="btn primary big" id="testFinish">完成</button>`:`<button type="button" class="btn primary big" id="testAgain">錯的再做一次（${ids.length-right} 題）</button>`):`<p id="testLeft" class="muted"></p><button type="button" class="btn primary big" id="submitTest">交卷</button>`}</div>
+  </section>`;
+  if(done) ids.forEach(id=>markTestCard(byId(id),res[id]));
+  else bindLine();
+}
+function render(){
+  stepper();
+  if(state.view==='review') renderReview(); else renderTest();
+}
+
+/* ---------- test: interactive cards ---------- */
+function blanksHTML(src,q,startIdx){
+  let i=startIdx;
+  const html=src.replace(/\[\[(.*?)\]\]/g,(m,spec)=>{
+    const idx=i++,id=`${q.id}_${idx}`,val=(state.v[q.id]||{})[idx]??'';
+    if(spec.startsWith('s:')){const o=spec.slice(2).split('|');return `<select class="blank" id="${id}" data-q="${q.id}" data-i="${idx}" aria-label="第 ${idx+1} 格"><option value="">選</option>${o.map(x=>`<option${x===val?' selected':''}>${x}</option>`).join('')}</select>`}
+    const cls=spec==='w'?'w':spec==='s'?'s':spec==='box'?'box':spec==='t'?'t':'';
+    return `<input class="blank ${cls}" id="${id}" data-q="${q.id}" data-i="${idx}" inputmode="${spec==='t'?'text':'numeric'}" autocomplete="off" value="${String(val).replace(/"/g,'')}" aria-label="第 ${idx+1} 格">`;
+  });
+  return {html,next:i};
+}
+function cardHTML(q){
+  let body='';
+  if(q.type==='choice'){
+    const sel=(state.v[q.id]||{}).c;
+    body=`<p class="stem"><span class="qn">${q.n}.</span>${q.stem}</p>${q.fig||''}<div class="opts${q.one?' one':''}" role="radiogroup">${q.opts.map((o,i)=>`<button type="button" class="opt${sel===i?' sel':''}" data-q="${q.id}" data-c="${i}" role="radio" aria-checked="${sel===i}"><span class="k">${OPTL[i]}</span><span>${o}</span></button>`).join('')}</div>`;
+  } else if(q.type==='fill'){
+    const a=blanksHTML(q.stem,q,0);const after=q.after?blanksHTML(q.after,q,a.next).html:'';
+    body=`<div class="stem"><span class="qn">${q.n}</span>${a.html}</div>${q.fig||''}${after}`;
+  } else if(q.type==='corners'){
+    const sel=(state.v[q.id]||{}).c||CORNERS.map(()=>[]);
+    body=`<p class="stem"><span class="qn">${q.n}</span>${q.stem}</p><div class="figrow">${CORNERS.map((f,fi)=>`<svg viewBox="${f.vb}" width="${f.w}" class="fig" role="group" aria-label="圖 ${fi+1}"><path d="${f.path}" fill="${f.fill||'none'}" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>${f.deco||''}${f.pts.map((p,pi)=>{const on=sel[fi].includes(pi);return `<g class="hit" tabindex="0" role="checkbox" aria-checked="${on}" aria-label="圖 ${fi+1} 第 ${pi+1} 個地方" data-q="${q.id}" data-f="${fi}" data-p="${pi}"><circle cx="${p[0]}" cy="${p[1]}" r="13" fill="transparent"/><circle cx="${p[0]}" cy="${p[1]}" r="2.5" fill="var(--muted)" opacity="${on?0:.5}"/>${on?`<ellipse cx="${p[0]}" cy="${p[1]}" rx="11" ry="10" fill="none" stroke="var(--pen)" stroke-width="2.5" transform="rotate(-12 ${p[0]} ${p[1]})"/>`:''}</g>`}).join('')}</svg>`).join('')}</div>`;
+  } else if(q.type==='line'){
+    const mm=(state.v[q.id]||{}).mm??20;const W=LINE.x0*2+LINE.max*LINE.px;
+    body=`<p class="stem"><span class="qn">${q.n}</span>${q.stem}</p><div class="scroll"><svg id="lineSvg" class="fig" viewBox="0 0 ${W} 100" width="${W}" style="touch-action:none" role="slider" tabindex="0" aria-label="線的長度，可用左右鍵調整" aria-valuemin="0" aria-valuemax="${LINE.max}" aria-valuenow="${mm}" data-q="${q.id}">${rulerH(LINE.x0,LINE.max,48,LINE.px)}<line id="lineSeg" x1="${LINE.x0}" y1="34" x2="${LINE.x0+mm*LINE.px}" y2="34" stroke="var(--pen)" stroke-width="3.5" stroke-linecap="round"/><circle cx="${LINE.x0}" cy="34" r="4" fill="var(--pen)"/><circle id="lineKnob" cx="${LINE.x0+mm*LINE.px}" cy="34" r="10" fill="var(--pen)" style="cursor:grab"/></svg></div>`;
+  } else if(q.type==='money'){
+    const c=(state.v[q.id]||{}).m||[];
+    body=`<p class="stem"><span class="qn">${q.n}</span>${q.stem}</p><div class="addrow">${MONEY.map(m=>`<button type="button" class="btn" data-q="${q.id}" data-add="${m.v}">＋ ${ic[m.ic]}</button>`).join('')}</div><div class="tray">${c.length?c.map((v,i)=>`<button type="button" class="tok" data-q="${q.id}" data-rm="${i}" aria-label="拿掉 ${v}">${ic[MONEY.find(m=>m.v===v).ic]}</button>`).join(''):'<span class="empty">按上面的按鈕把錢放進來，點錢可以拿掉。</span>'}</div>`;
+  } else if(q.type==='word'){
+    const v=state.v[q.id]||{};
+    body=`<p class="stem"><span class="qn">${q.n}</span>${q.stem}</p>${q.fig||''}<div class="row"><label>橫式：<input class="blank" style="width:12em;text-align:left" id="${q.id}_f" data-q="${q.id}" data-i="f" autocomplete="off" placeholder="例如 12×3＝36" value="${(v.f||'').replace(/"/g,'')}"></label><label>答：<input class="blank w" id="${q.id}_a" data-q="${q.id}" data-i="a" inputmode="numeric" autocomplete="off" value="${(v.a||'').replace(/"/g,'')}"> ${q.unit}</label></div>`;
+  }
+  return `<article class="q" id="${q.id}"><span class="mark" aria-hidden="true"></span><p class="from">${S.find(s=>s.id===q.s).name.split('、')[0]}大題</p>${body}<div class="fbzone" id="fb_${q.id}"></div></article>`;
+}
+function check(q){
+  const v=state.v[q.id]||{};
+  if(q.type==='choice') return {ok:v.c===q.ans,empty:v.c==null};
+  if(q.type==='fill'){const per=q.ans.map((a,i)=>norm(v[i])===norm(a));return {ok:per.every(Boolean),per,empty:q.ans.every((a,i)=>!norm(v[i]))}}
+  if(q.type==='corners'){const sel=v.c||CORNERS.map(()=>[]);const per=CORNERS.map((f,i)=>sel[i].length===f.good.length&&f.good.every(g=>sel[i].includes(g)));return {ok:per.every(Boolean),empty:false}}
+  if(q.type==='line'){const mm=v.mm??20;return {ok:mm===LINE.target,empty:v.mm==null}}
+  if(q.type==='money'){const m=v.m||[];return {ok:m.reduce((a,b)=>a+b,0)===q.target,empty:!m.length}}
+  if(q.type==='word') return {ok:norm(v.a)!==''&&Number(norm(v.a))===q.ans,empty:!norm(v.a)};
+}
+function markTestCard(q,ok){
+  const card=document.getElementById(q.id);if(!card)return;
+  card.classList.add(ok?'right':'wrong');
+  card.querySelector('.mark').textContent=ok?'○':'✗';
+  const r=check(q);
+  if(q.type==='fill'&&r.per) r.per.forEach((k,i)=>{const el=document.getElementById(`${q.id}_${i}`);if(el){el.classList.add(k?'ok':'no')}});
+  if(q.type==='choice') card.querySelectorAll('.opt').forEach(b=>{const c=+b.dataset.c;if(c===(state.v[q.id]||{}).c)b.classList.add(ok?'good':'bad');if(!ok&&c===q.ans)b.classList.add('ansopt')});
+  document.getElementById('fb_'+q.id).innerHTML=ok?'<div class="fb ok"><strong>答對了！</strong></div>'
+    :`<div class="fb no"><strong>還是錯了，再看一次詳解</strong><div class="explain">${reviewBody(q,true).replace(/class="qn"/g,'class="qn sr"')}<hr>${q.ex}</div></div>`;
+}
+function rerenderCard(q){
+  const card=document.getElementById(q.id);card.outerHTML=cardHTML(q);
+}
+
+/* ---------- teacher hold button ---------- */
+function bindHold(s){
+  const b=$('#holdBtn');let t=null;
+  const start=e=>{if(e.type==='keydown'&&!(e.key===' '||e.key==='Enter'))return;if(e.repeat)return;e.preventDefault();b.classList.add('holding');t=setTimeout(()=>{state.sec[s.id]='done';const n=firstOpen();if(n<S.length){state.cur=n}else{state.view='test'}save();render();window.scrollTo(0,0)},2000)};
+  const stop=()=>{b.classList.remove('holding');clearTimeout(t)};
+  b.addEventListener('pointerdown',start);b.addEventListener('keydown',start);
+  ['pointerup','pointerleave','pointercancel','keyup','blur'].forEach(ev=>b.addEventListener(ev,stop));
+  b.addEventListener('contextmenu',e=>e.preventDefault());
+  $('#backBtn').addEventListener('click',()=>{state.sec[s.id]=undefined;delete state.sec[s.id];save();render()});
+}
+
+/* ---------- events ---------- */
+document.addEventListener('input',e=>{
+  const t=e.target;if(!t.dataset||!t.dataset.q||t.dataset.i==null)return;
+  state.v[t.dataset.q]=state.v[t.dataset.q]||{};state.v[t.dataset.q][t.dataset.i]=t.value;save();
+});
+function toggleCorner(g){
+  if(state.test.done)return;
+  const q=byId(g.dataset.q),f=+g.dataset.f,p=+g.dataset.p;
+  state.v[q.id]=state.v[q.id]||{};const c=state.v[q.id].c=state.v[q.id].c||CORNERS.map(()=>[]);
+  const k=c[f].indexOf(p);if(k>=0)c[f].splice(k,1);else c[f].push(p);
+  rerenderCard(q);const ng=document.querySelector(`#${q.id} .hit[data-f="${f}"][data-p="${p}"]`);if(ng)ng.focus();save();
+}
+document.addEventListener('keydown',e=>{const g=e.target.closest&&e.target.closest('.hit');if(g&&(e.key===' '||e.key==='Enter')){e.preventDefault();toggleCorner(g)}});
+document.addEventListener('click',e=>{
+  const ad=e.target.closest('.adot');if(ad){angAct(ad);return}
+  const t=e.target.closest('button,.hit');if(!t)return;
+  if(t.classList.contains('hit')){toggleCorner(t);return}
+  if(t.dataset.nlAct){nlAct(t);return}
+  if(t.dataset.svgo){svGo(t);return}
+  if(t.dataset.angreset){angAct(t);return}
+  if(t.dataset.pv||t.dataset.cmp){pvAct(t);return}
+  if(t.dataset.step!=null){if(t.dataset.step==='test'){state.view='test'}else{state.view='review';state.cur=+t.dataset.step}save();render();window.scrollTo(0,0);return}
+  if(t.dataset.goto!=null){if(t.dataset.goto==='test')state.view='test';else state.cur=+t.dataset.goto;save();render();window.scrollTo(0,0);return}
+  if(t.dataset.mark){
+    const q=byId(t.dataset.q);state.mark[q.id]=t.dataset.mark;save();
+    document.getElementById(q.id).outerHTML=reviewCard(q,false);
+    const s=S[state.cur],qs=secQs(s.id),left=qs.filter(x=>!state.mark[x.id]).length,wrong=qs.filter(x=>state.mark[x.id]==='wrong').length;
+    $('#leftMsg').innerHTML=left?`還有 <b>${left}</b> 題還沒點喔。`:wrong?`有 ${wrong} 題寫錯，都在考卷上訂正好了嗎？`:'這一大題全部寫對，太棒了！不用給老師批改，可以直接做下一大題。';
+    $('#secDone').disabled=!!left;$('#secDone').textContent=doneLabel(left,wrong);stepper();return}
+  if(t.id==='allRight'){secQs(S[state.cur].id).forEach(q=>state.mark[q.id]='right');save();render();const f=document.getElementById('secDone');if(f)f.scrollIntoView({block:'center'});return}
+  if(t.id==='secDone'){
+    const sid=S[state.cur].id;
+    if(secQs(sid).every(q=>state.mark[q.id]==='right')){state.sec[sid]='done';const n=firstOpen();if(n<S.length)state.cur=n;else state.view='test'}
+    else state.sec[sid]='teacher';
+    save();render();window.scrollTo(0,0);return}
+  if(t.id==='submitTest'){
+    const ids=pendingIds();const blank=ids.filter(id=>check(byId(id)).empty);
+    if(blank.length&&!t.dataset.sure){t.dataset.sure='1';$('#testLeft').textContent=`還有 ${blank.length} 題沒寫，確定要交卷嗎？再按一次「交卷」。`;return}
+    state.test.ids=ids;state.test.res={};ids.forEach(id=>state.test.res[id]=check(byId(id)).ok);state.test.done=true;save();render();window.scrollTo(0,0);return}
+  if(t.id==='testAgain'){
+    const ids=state.test.ids.filter(id=>!state.test.res[id]);ids.forEach(id=>delete state.v[id]);
+    state.test={round:state.test.round+1,ids,done:false,res:{}};save();render();window.scrollTo(0,0);return}
+  if(t.id==='testFinish'){state.test={round:state.test.round+1,ids:[],done:true,res:{}};save();render();window.scrollTo(0,0);return}
+  if(t.dataset.c!=null&&t.classList.contains('opt')){
+    const q=byId(t.dataset.q);state.v[q.id]={c:+t.dataset.c};
+    t.parentNode.querySelectorAll('.opt').forEach(b=>{const on=b===t;b.classList.toggle('sel',on);b.setAttribute('aria-checked',on)});save();return}
+  if(t.dataset.add||t.dataset.rm!=null){
+    const q=byId(t.dataset.q);state.v[q.id]=state.v[q.id]||{};const m=state.v[q.id].m=state.v[q.id].m||[];
+    if(t.dataset.add){m.push(+t.dataset.add);m.sort((a,b)=>b-a)}else m.splice(+t.dataset.rm,1);
+    rerenderCard(q);save();return}
+});
+function bindLine(){
+  const svg=document.getElementById('lineSvg');if(!svg)return;
+  const q=byId(svg.dataset.q);let drag=false;
+  const set=mm=>{mm=Math.max(0,Math.min(LINE.max,mm));state.v[q.id]={mm};const x=LINE.x0+mm*LINE.px;document.getElementById('lineSeg').setAttribute('x2',x);document.getElementById('lineKnob').setAttribute('cx',x);svg.setAttribute('aria-valuenow',mm);save()};
+  const toMM=e=>{const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());return Math.round((p.x-LINE.x0)/LINE.px)};
+  svg.addEventListener('pointerdown',e=>{drag=true;try{svg.setPointerCapture(e.pointerId)}catch(_){}set(toMM(e))});
+  svg.addEventListener('pointermove',e=>{if(drag)set(toMM(e))});
+  svg.addEventListener('pointerup',()=>drag=false);svg.addEventListener('pointercancel',()=>drag=false);
+  svg.addEventListener('keydown',e=>{const cur=(state.v[q.id]||{}).mm??20;if(e.key==='ArrowRight'){e.preventDefault();set(cur+1)}if(e.key==='ArrowLeft'){e.preventDefault();set(cur-1)}});
+}
+
+/* zhuyin toggle */
+function applyBpmf(){document.body.classList.toggle('bpmf',!!state.bpmf);$('#bpmfBtn').textContent='注音：'+(state.bpmf?'開':'關')}
+$('#bpmfBtn').addEventListener('click',()=>{state.bpmf=!state.bpmf;applyBpmf();save()});
+
+/* reset with in-page confirm */
+const rz=$('#resetZone');
+rz.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.id==='resetBtn'){rz.innerHTML='<span class="confirm">確定要從頭開始嗎？<button class="btn primary" id="yesReset" type="button">從頭開始</button><button class="btn" id="noReset" type="button">不要</button></span>';return}
+  if(b.id==='yesReset'){state=blankState();save();render();window.scrollTo(0,0)}
+  rz.innerHTML='<button class="btn" id="resetBtn" type="button">從頭開始</button>';
+});
+
+/* QR code for students */
+(function(){
+  const url=/github\.io$/.test(location.hostname)?location.origin+location.pathname:'https://teacher-liujikan.github.io/school-exam-review/g2/chinese-mid1/';
+  const make=(el,size)=>{try{new QRCode(el,{text:url,width:size,height:size,colorDark:'#1d2742',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch(e){}};
+  if(window.QRCode){make($('#qrSmall'),144);make($('#qrBig'),420)}else{$('#qrOpen').hidden=true}
+  $('#qrUrl').textContent=url;
+  const m=$('#qrModal');
+  $('#qrOpen').addEventListener('click',()=>{m.hidden=false;$('#qrClose').focus()});
+  $('#qrClose').addEventListener('click',()=>{m.hidden=true});
+  m.addEventListener('click',e=>{if(e.target===m)m.hidden=true});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')m.hidden=true});
+})();
+applyBpmf();render();
+})();
+
+</script>
+
+</body></html>

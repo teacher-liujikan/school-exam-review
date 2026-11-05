@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>陽明國小考卷檢討</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Huninn&display=swap">
+<style>
+/* Layout: graph-paper page, one card per grade, exam links as pills */
+:root{
+  --paper:#f5f7fb; --grid:#e2e8f1; --card:#ffffff; --ink:#1d2742; --muted:#5a647a;
+  --pen:#2753c9; --pen-soft:#e7edfb; --line:#cfd7e4; --red:#d0362b;
+  --f-display:"Iansui","Huninn","Noto Sans TC",sans-serif;
+  --f-body:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11161f; --grid:#1b2230; --card:#18202c; --ink:#e5e9f1; --muted:#9ba4b6;
+  --pen:#86a2ff; --pen-soft:#1f2a45; --line:#2e3849; --red:#ff6f62; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11161f; --grid:#1b2230; --card:#18202c; --ink:#e5e9f1; --muted:#9ba4b6;
+  --pen:#86a2ff; --pen-soft:#1f2a45; --line:#2e3849; --red:#ff6f62; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 60px}
+.school{font-size:14px;color:var(--muted);letter-spacing:.05em}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,6vw,42px);line-height:1.25;margin:4px 0 6px;text-wrap:balance}
+.lead{margin:0 0 22px;color:var(--muted)}
+.grades{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.grade{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.grade h2{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0}
+.grade a{display:block;text-decoration:none;color:var(--pen);background:var(--pen-soft);border:1.5px solid var(--pen);border-radius:10px;padding:6px 12px}
+.grade a:hover,.grade a:focus-visible{background:var(--card);outline:none}
+.grade .none{color:var(--muted);font-size:15px}
+footer{margin-top:36px;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="school">臺南市善化區陽明國小・115 學年度第一學期</div>
+  <h1>考卷檢討</h1>
+  <p class="lead">選自己的年級和考卷，拿著老師改好的考卷，一大題一大題自己檢討。</p>
+  <div class="grades" id="grades"></div>
+  <footer>每份考卷的作答紀錄只存在這台裝置的瀏覽器裡。</footer>
+</div>
+<script>
+const EXAMS={
+  '一年級':[],
+  '二年級':[{name:'國語 期中評量',url:'g2/chinese-mid1/'},{name:'數學 期中評量',url:'g2/math-mid1/'}],
+  '三年級':[],'四年級':[],'五年級':[],'六年級':[]
+};
+document.getElementById('grades').innerHTML=Object.entries(EXAMS).map(([g,list])=>
+  `<section class="grade"><h2>${g}</h2>${list.length?list.map(e=>`<a href="${e.url}">${e.name}</a>`).join(''):'<span class="none">還沒有考卷</span>'}</section>`).join('');
+</script>
+</body>
+</html>
