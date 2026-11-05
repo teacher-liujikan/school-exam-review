@@ -700,7 +700,7 @@ const menu2=()=>'<table class="pv"><tr><th>鬆餅</th><th>小麵包</th><th>蛋�
 function pots(){
   return svg(220,100,`<rect x="20" y="14" width="80" height="76" rx="4" fill="var(--grid)" stroke="var(--ink)" stroke-width="2"/><rect x="12" y="10" width="96" height="8" rx="3" fill="var(--shade)" stroke="var(--ink)" stroke-width="1.5"/><rect x="130" y="46" width="64" height="44" rx="4" fill="var(--grid)" stroke="var(--ink)" stroke-width="2"/><rect x="124" y="42" width="76" height="7" rx="3" fill="var(--shade)" stroke="var(--ink)" stroke-width="1.5"/><text x="60" y="56" text-anchor="middle" font-size="18" fill="var(--ink)" style="font-family:var(--f-body)">甲</text><text x="162" y="74" text-anchor="middle" font-size="18" fill="var(--ink)" style="font-family:var(--f-body)">乙</text>`,'甲鍋比較大，乙鍋比較小');
 }
-function bar45(show){
+function bar45o(show){
   return svg(420,96,`<path d="M20 26 Q20 14 32 14 H198 Q210 14 210 4 Q210 14 222 14 H388 Q400 14 400 26" fill="none" stroke="var(--ink)" stroke-width="1.5"/><text x="210" y="0" dy="0" text-anchor="middle" font-size="0">.</text><text x="210" y="10" text-anchor="middle" font-size="13" fill="var(--ink)" dy="-2">45 個</text><rect x="20" y="30" width="160" height="32" fill="var(--grid)" stroke="var(--ink)" stroke-width="1.5"/><rect x="180" y="30" width="220" height="32" fill="var(--pen-soft)" stroke="var(--ink)" stroke-width="1.5"/><text x="100" y="51" text-anchor="middle" font-size="14" fill="var(--ink)" style="font-family:var(--f-body)">媽媽做的</text><text x="290" y="51" text-anchor="middle" font-size="14" fill="var(--ink)" style="font-family:var(--f-body)">美美做的</text><text x="100" y="86" text-anchor="middle" font-size="14" fill="var(--ink)">18 個</text><text x="290" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="${show?'var(--red)':'var(--ink)'}">${show?'27 個':'(　　) 個'}</text>`,'線段圖：45 個裡面，媽媽做 18 個，美美做的不知道');
 }
 const chk=(a,op,b,r)=>vert(a,op,b,r);
@@ -770,8 +770,8 @@ const Q=[
  {s:'s5',n:'3.(2)',type:'fill',stem:'白巧克力球一罐有 138 顆，黑巧克力球一罐有 124 顆，哪一罐比較多？在 □ 裡填入＜或＞。<span class="sub">138（[[s:>|<]]）124</span>',ans:['>'],ex:'<p>百位都是 1，比十位：3 比 2 大，所以 138 <b>＞</b> 124，白巧克力球比較多。</p>'},
  {s:'s5',n:'3.(3)',type:'word',stem:'甜點店上午賣出 45 個檸檬塔，下午賣出 27 個檸檬塔，上午和下午一共賣出幾個檸檬塔？（先寫出算式，再用直式算算看）',unit:'個',ans:72,f:'45＋27＝72',
   ex:'<p>「一共」要用加法。</p><p>算式：45＋27＝72</p>'+vert(45,'＋',27,72)+'<p>5＋7＝12，寫 2 進 1。4＋2＋1＝7。</p><p>答：一共賣出 72 個檸檬塔。</p>'},
- {s:'s5',n:'3.(4)',type:'word',stem:'媽媽和<u>美美</u>一共做了 45 個可頌，其中 18 個可頌是媽媽做的，有多少個可頌是<u>美美</u>做的？（請列出有括號的算式）',fig:bar45(false),unit:'個',ans:27,f:'18＋（　）＝45',
-  ex:'<p>看線段圖：媽媽做的 18 個＋美美做的（　）個＝45 個。</p><p>有括號的算式：<b>18＋（　）＝45</b>，也可以寫 45－18＝（　）。</p>'+bar45(true)+vert(45,'－',18,27)+'<p>答：美美做了 27 個可頌。</p>'}
+ {s:'s5',n:'3.(4)',type:'word',stem:'媽媽和<u>美美</u>一共做了 45 個可頌，其中 18 個可頌是媽媽做的，有多少個可頌是<u>美美</u>做的？（請列出有括號的算式）',unit:'個',ans:27,f:'18＋（　）＝45',
+  ex:'<p>看線段圖：媽媽做的 18 個＋美美做的（　）個＝45 個。</p><p>有括號的算式：<b>18＋（　）＝45</b>，也可以寫 45－18＝（　）。</p>'+bar45o(true)+vert(45,'－',18,27)+'<p>答：美美做了 27 個可頌。</p>'}
 ];
 Q.forEach((q,i)=>q.id='q'+i);
 /* ---------- step-by-step explanations for every math question ---------- */
@@ -1027,6 +1027,7 @@ function barM(total,aLab,aVal,bLab,bVal,ask){
 }
 
 function bar45(show){return barM('45 個','媽媽做的',18,'美美做的',27,show?'':'b')}
+Q.find(q=>q.s==='s5'&&q.n==='3.(4)').fig=bar45(false);
 EX('s5','1.(1)',ST(
   [barM('現在 89 元','原本',17,'奶奶給的',72,'b'),'畫線段圖：原本的 17 元＋奶奶給的＝現在的 89 元。紅色是不知道的部分。'],
   [big('89－17＝（　）'),'全部是 89，知道其中一部分是 17，要找另一部分，用<b>減法</b>。'],
